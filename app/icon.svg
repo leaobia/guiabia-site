@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#4B1D80"/>
+  <g fill="#DCC7EC" transform="translate(32 25)">
+    <circle cx="0" cy="-9" r="5.4"/>
+    <circle cx="8.6" cy="-2.8" r="5.4"/>
+    <circle cx="5.3" cy="7.3" r="5.4"/>
+    <circle cx="-5.3" cy="7.3" r="5.4"/>
+    <circle cx="-8.6" cy="-2.8" r="5.4"/>
+  </g>
+  <circle cx="32" cy="25" r="3.6" fill="#4B1D80"/>
+  <circle cx="32" cy="25" r="1.8" fill="#F3EBFA"/>
+  <text x="32" y="56" font-family="Manrope, Arial, sans-serif" font-size="15" font-weight="700" fill="#F3EBFA" text-anchor="middle">bia</text>
+</svg>
