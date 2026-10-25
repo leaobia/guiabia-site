@@ -61,3 +61,93 @@ h2 { margin:0 0 36px; font-size:clamp(1.9rem,5vw,3rem); line-height:1.1; letter-
   .feats { grid-template-columns:1fr 1fr; }
 }
 @media (prefers-reduced-motion:reduce) { .msg { opacity:1; animation:none; } .eye, .float { animation:none; } }
+
+
+/* ===== Cole no app/globals.css ===== */
+
+/* Troque pelo roxo do seu site, se for diferente */
+:root {
+  --bia-roxo: #7c3aed;
+  --bia-roxo-escuro: #5b21b6;
+  --bia-trilho: #f3e8ff;
+}
+
+/* Rolagem suave e barra de rolagem roxa (site todo) */
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--bia-roxo) var(--bia-trilho); /* Firefox e Chrome atual */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Safari e navegadores mais antigos */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bia-trilho);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bia-roxo);
+  border-radius: 8px;
+  border: 3px solid var(--bia-trilho);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bia-roxo-escuro);
+}
+
+/* Rodapé: SUBSTITUA o bloco .foot que já existe por estes */
+.foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+.foot-social {
+  display: inline-flex;
+  align-items: center;
+  color: var(--bia-roxo);
+}
+.foot-social:hover {
+  color: var(--bia-roxo-escuro);
+}
+
+.foot-top {
+  background: transparent;
+  color: var(--bia-roxo);
+  border: 1.5px solid var(--bia-roxo);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font: inherit;
+  cursor: pointer;
+}
+.foot-top:hover {
+  background: var(--bia-roxo);
+  color: #fff;
+}
+.foot-top:focus-visible,
+.foot-social:focus-visible {
+  outline: 2px solid var(--bia-roxo-escuro);
+  outline-offset: 3px;
+}
+
+.foot-copy {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
