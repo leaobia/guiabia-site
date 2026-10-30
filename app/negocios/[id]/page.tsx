@@ -4,15 +4,30 @@ import Footer from "@/components/Footer";
 
 type Props = { params: Promise<{ id: string }> };
 
-async function getBusiness(id: string) {
+type Business = {
+  name: string;
+  description?: string;
+  coverImageUrl?: string;
+  logoUrl?: string;
+};
+
+const API_URL =
+  process.env.API_URL ?? "https://bia-back-end-mu.vercel.app/api/v1";
+const DEFAULT_IMAGE = "https://guiabia.com.br/og-default-bia.png";
+
+const isAbsoluteUrl = (url?: string) => !!url && /^https?:\/\//i.test(url);
+
+async function getBusiness(id: string): Promise<Business | null> {
   try {
-    const res = await fetch(
-      `https://api.guiabia.com.br/api/v1/businesses/${encodeURIComponent(id)}`,
-      { next: { revalidate: 60 } }
-    );
+    const res = await fetch(`${API_URL}/businesses/${encodeURIComponent(id)}`, {
+      next: { revalidate: 60 },
+      // evita a página (e o robô do WhatsApp) ficar esperando se a API demorar
+      signal: AbortSignal.timeout(5000),
+    });
     if (!res.ok) return null;
     const data = await res.json();
-    return data.business || data.data || data;
+    const business = data?.business ?? data?.data ?? data;
+    return business && typeof business.name === "string" ? business : null;
   } catch {
     return null;
   }
@@ -22,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const business = await getBusiness(id);
 
-  if (!business?.name) {
+  if (!business) {
     return {
       title: "Empreendimento no app Bia",
       description: "Abra este link no celular com o app Bia instalado.",
@@ -31,13 +46,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = `${business.name} | Guia BIA`;
-  const description =
-    business.description ||
-    `Conheça ${business.name} no Guia BIA, comunidade de apoio e empreendedorismo feminino.`;
-  const image =
-    business.coverImageUrl ||
-    business.logoUrl ||
-    "https://guiabia.com.br/og-default-bia.png";
+  const description = (
+    business.description?.trim() ||
+    `Conheça ${business.name} no Guia BIA, comunidade de apoio e empreendedorismo feminino.`
+  ).slice(0, 160);
+
+  const candidate = business.coverImageUrl || business.logoUrl;
+  const image = isAbsoluteUrl(candidate) ? (candidate as string) : DEFAULT_IMAGE;
 
   return {
     title,
@@ -46,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `https://app.guiabia.com.br/negocios/${id}`,
+      url: `https://app.guiabia.com.br/negocios/${encodeURIComponent(id)}`,
       siteName: "Guia BIA",
       images: [{ url: image, width: 1200, height: 630, alt: business.name }],
       type: "website",
@@ -66,7 +81,7 @@ export default async function Negocio({ params }: Props) {
         <div className="wrap">
           <Avatar size={150} state="greeting" float />
           <h2>
-            {business?.name
+            {business
               ? `${business.name} está no app Bia.`
               : "Esse empreendimento está no app Bia."}
           </h2>
