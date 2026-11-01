@@ -104,8 +104,9 @@ export default function ExcluirConta() {
         <h2 style={h2Style}>O que é mantido, por quanto tempo e por quê</h2>
         <ul>
           <li>
-            <strong>Registros de pagamento</strong> do Bia Pro (valor, data,
-            status e identificador da transação): guardados por até{" "}
+            <strong>Registros de pagamento e assinatura</strong> (plano,
+            datas, status e identificador da compra no Google Play):
+            guardados por até{" "}
             <strong>5 anos</strong>, por obrigação legal e fiscal e para
             atender eventuais reembolsos ou contestações.
           </li>

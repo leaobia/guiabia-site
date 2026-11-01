@@ -4,10 +4,10 @@ export const metadata = { title: "Termos de uso | Bia" };
  
 const VERSAO = "1.0";
 const ATUALIZADO_EM = "25 de outubro de 2026";
+const DESENVOLVEDORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_SUPORTE = "bia.comunidade.feminina@gmail.com";
-const PRAZO_ESTORNO = "7 dias úteis";
-const BENEFICIOS_PRO = "acesso a 500 mensagens no ChatBia e recurso de 5 currículos enviados";
- 
+const ASSINATURAS_PLAY = "https://play.google.com/store/account/subscriptions";
+
 const h2Style = { marginTop: 32, marginBottom: 8 } as const;
  
 export default function Termos() {
@@ -28,7 +28,8 @@ export default function Termos() {
       <p>
         Bem-vinda aos Termos de Uso da plataforma Bia. Estes Termos regulam o
         acesso e a utilização do nosso aplicativo, dos conteúdos, das trilhas
-        de conhecimento, da área de comunidade e dos serviços relacionados.
+        de conhecimento, da área de comunidade e dos serviços relacionados. O
+        aplicativo Guia BIA é desenvolvido e oferecido por {DESENVOLVEDORA}.
       </p>
       <p>
         Ao acessar ou utilizar o aplicativo, você concorda com os termos
@@ -40,13 +41,13 @@ export default function Termos() {
       <p>
         1.1. Algumas funcionalidades, como acessar a comunidade, guardar o
         progresso nas trilhas de conhecimento, resgatar cupons de desconto,
-        contratar o Bia Pro ou interagir como anunciante ou recrutadora,
+        contratar um plano pago ou interagir como anunciante ou recrutadora,
         exigem cadastro com informações verdadeiras, completas e atualizadas.
       </p>
       <p>
-        1.2. O uso do aplicativo é destinado a maiores de 18 anos. Menores de
-        idade só podem usar a plataforma com autorização e acompanhamento de
-        um responsável legal.
+        1.2. O uso do aplicativo é permitido a partir dos 14 anos. Menores de
+        18 anos só podem contratar planos pagos com a autorização do
+        responsável legal.
       </p>
       <p>
         1.3. Você é responsável por manter a confidencialidade das suas
@@ -79,46 +80,71 @@ export default function Termos() {
           membras, anunciantes e recrutadoras.
         </li>
         <li>
-          <strong>Bia Pro:</strong> plano pago com recursos adicionais,
-          descrito na seção 3.
+          <strong>Planos pagos:</strong> Bia Basic e Bia Pro, com recursos
+          adicionais, descritos na seção 3.
         </li>
       </ul>
- 
-      <h2 style={h2Style}>3. Bia Pro e pagamentos</h2>
+
+      <h2 style={h2Style}>3. Planos e pagamentos</h2>
       <p>
-        3.1. O Bia oferece funcionalidades gratuitas e um plano pago, o Bia
-        Pro, que dá acesso a: {BENEFICIOS_PRO}.
+        3.1. O Bia oferece funcionalidades gratuitas e os planos pagos abaixo.
+        O preço final é sempre o exibido no Google Play no momento da
+        contratação.
+      </p>
+      <ul>
+        <li>
+          <strong>Bia Basic</strong> (R$ 19,90/mês): até 200 mensagens por
+          mês no chat da BIA, até 5 currículos salvos e candidaturas
+          ilimitadas.
+        </li>
+        <li>
+          <strong>Bia Pro</strong> (R$ 29,90/mês ou R$ 219,90/ano): até 500
+          mensagens por mês no chat da BIA, até 5 currículos salvos, vagas
+          ilimitadas como recrutadora e 1 empreendimento na vitrine com até 18
+          fotos.
+        </li>
+      </ul>
+      <p>
+        3.2. O pagamento é feito pela sua conta Google, via Google Play. O
+        acesso ao plano é liberado após a confirmação do pagamento pelo
+        Google Play.
       </p>
       <p>
-        3.2. O valor, a duração do plano e a forma de pagamento (PIX) são
-        informados na tela de contratação, antes da confirmação do pagamento.
+        3.3. A assinatura é renovada automaticamente ao fim de cada período
+        (mensal ou anual), com nova cobrança, até que você a cancele.
       </p>
-      <p>
-        3.3. O acesso ao Bia Pro é liberado após a confirmação do pagamento.
-      </p>
-      <p>
-        3.4. O plano não é renovado automaticamente. Ao fim do período
-        contratado, você decide se quer contratar novamente.
-      </p>
- 
+
       <h2 id="reembolso" style={h2Style}>
         4. Cancelamento e reembolso
       </h2>
       <p>
-        4.1. Você pode desistir da contratação dos planos Bia em até 7 (sete) dias
-        corridos após o pagamento e receber o valor integral de volta.
+        4.1. Você pode cancelar a assinatura a qualquer momento no Google Play,
+        em{" "}
+        <a href={ASSINATURAS_PLAY} target="_blank" rel="noopener noreferrer">
+          play.google.com/store/account/subscriptions
+        </a>
+        , ou pelo botão &quot;Gerenciar ou cancelar assinatura&quot; no
+        aplicativo. Com o cancelamento, a renovação é interrompida e o acesso
+        continua até o fim do período já pago.
       </p>
       <p>
-        4.2. Para isso, envie um e-mail para{" "}
-        <a href={`mailto:${EMAIL_SUPORTE}`}>{EMAIL_SUPORTE}</a> informando o
-        e-mail cadastrado no aplicativo e a data do pagamento.
+        4.2. Excluir a sua conta <strong>não</strong> cancela a assinatura no
+        Google Play. Cancele a assinatura antes, para não ser cobrada de novo.
       </p>
       <p>
-        4.3. O reembolso é feito via PIX, para a mesma conta que realizou o
-        pagamento, em até {PRAZO_ESTORNO} após o pedido.
+        4.3. Conforme o Código de Defesa do Consumidor, você pode desistir da
+        contratação em até 7 (sete) dias corridos após o pagamento e receber o
+        valor integral de volta.
       </p>
       <p>
-        4.4. Com o reembolso, o acesso ao plano é encerrado.
+        4.4. O pedido de reembolso pode ser feito pelo Google Play ou pelo
+        e-mail <a href={`mailto:${EMAIL_SUPORTE}`}>{EMAIL_SUPORTE}</a>,
+        informando o e-mail cadastrado no aplicativo e a data do pagamento. O
+        estorno é feito pelo Google, no mesmo meio de pagamento usado na
+        compra.
+      </p>
+      <p>
+        4.5. Com o reembolso, o acesso ao plano é encerrado.
       </p>
  
       <h2 style={h2Style}>5. Regras de conduta na comunidade e nas avaliações</h2>
@@ -198,8 +224,9 @@ export default function Termos() {
       <h2 style={h2Style}>10. Encerramento e exclusão de conta</h2>
       <p>
         10.1. Você pode solicitar a exclusão da sua conta e dos seus dados
-        diretamente nas configurações do aplicativo ou entrando em contato com
-        o nosso suporte.
+        diretamente nas configurações do aplicativo ou pela página{" "}
+        <Link href="/excluir-conta">Excluir conta</Link>. A exclusão da conta
+        não cancela a assinatura no Google Play (veja a seção 4).
       </p>
       <p>
         10.2. Podemos suspender o acesso de qualquer usuária que viole estes
