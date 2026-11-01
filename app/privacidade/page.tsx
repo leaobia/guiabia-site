@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export const metadata = { title: "Política de privacidade | Bia" };
 
-const VERSAO = "1.0";
-const ATUALIZADO_EM = "25 de outubro de 2026";
+const VERSAO = "1.1";
+const ATUALIZADO_EM = "1 de novembro de 2026";
 const CONTROLADORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_PRIVACIDADE = "bia.comunidade.feminina@gmail.com";
 const NOME_ENCARREGADA = "BIANCA PEREIRA LEÃO";
@@ -164,6 +164,11 @@ export default function Privacidade() {
         manter um registro anônimo (que não permite identificar você) e as
         informações que a lei nos obriga a guardar, como os registros de
         pagamento.
+      </p>
+      <p>
+        O passo a passo, o pedido de exclusão sem o aplicativo e a lista do
+        que é apagado e do que é mantido estão na página{" "}
+        <Link href="/excluir-conta">Excluir conta</Link>.
       </p>
 
       <h2 style={h2Style}>9. Segurança</h2>
