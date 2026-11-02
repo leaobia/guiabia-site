@@ -64,6 +64,11 @@ export default function Privacidade() {
           você permite, para mostrar negócios próximos (veja a seção 4).
         </li>
         <li>
+          <strong>Agendamentos:</strong> ao solicitar um agendamento, seu
+          nome, telefone e e-mail são enviados ao negócio escolhido para que
+          ele entre em contato.
+        </li>
+        <li>
           <strong>Assinaturas:</strong> os pagamentos são processados pelo
           Google Play e gerenciados pelo RevenueCat. O app recebe só o status
           da assinatura (plano, validade e se está ativa) e nunca tem acesso
@@ -145,6 +150,10 @@ export default function Privacidade() {
           <strong>Empresas e recrutadoras:</strong> quando você se candidata a
           uma vaga ou deixa o seu currículo visível, as informações
           necessárias ficam disponíveis para a empresa responsável pela vaga.
+        </li>
+        <li>
+          <strong>Negócios da vitrine:</strong> quando você solicita um
+          agendamento.
         </li>
         <li>
           <strong>Operadores</strong>, que tratam dados em nosso nome, sob
