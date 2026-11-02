@@ -79,7 +79,7 @@ export default function ExcluirConta() {
         <ul>
           <li>
             <strong>Perfil:</strong> nome, e-mail, senha, foto e demais dados
-            do cadastro, incluindo dados sensíveis que você tenha informado.
+            do cadastro.
           </li>
           <li>
             <strong>Currículos:</strong> todos os currículos cadastrados.
@@ -96,8 +96,11 @@ export default function ExcluirConta() {
             <strong>Mensagens do chat:</strong> as suas conversas e mensagens.
           </li>
           <li>
-            <strong>Avaliações e publicações:</strong> as avaliações de
-            anunciantes e as publicações na comunidade feitas por você.
+            <strong>Avaliações:</strong> as avaliações de anunciantes feitas
+            por você.
+          </li>
+          <li>
+            <strong>Vagas:</strong> as vagas que você publicou.
           </li>
         </ul>
 

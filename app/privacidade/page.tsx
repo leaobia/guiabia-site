@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export const metadata = { title: "Política de privacidade | Bia" };
 
-const VERSAO = "1.1";
-const ATUALIZADO_EM = "1 de novembro de 2026";
+const VERSAO = "1.2";
+const ATUALIZADO_EM = "2 de novembro de 2026";
 const CONTROLADORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_PRIVACIDADE = "bia.comunidade.feminina@gmail.com";
 const NOME_ENCARREGADA = "BIANCA PEREIRA LEÃO";
@@ -52,17 +52,16 @@ export default function Privacidade() {
         </li>
         <li>
           <strong>Uso da plataforma:</strong> progresso nas trilhas, cursos
-          concluídos, certificados, cupons resgatados, publicações na
-          comunidade, avaliações de anunciantes e os negócios que você
-          cadastrar.
+          concluídos, certificados, cupons resgatados, avaliações de
+          anunciantes e os negócios que você cadastrar.
         </li>
         <li>
           <strong>Chat com a BIA:</strong> as mensagens que você envia e as
-          respostas geradas (veja a seção 6).
+          respostas geradas (veja a seção 5).
         </li>
         <li>
           <strong>Localização:</strong> as coordenadas do aparelho, quando
-          você permite, para mostrar negócios próximos (veja a seção 5).
+          você permite, para mostrar negócios próximos (veja a seção 4).
         </li>
         <li>
           <strong>Assinaturas:</strong> os pagamentos são processados pelo
@@ -77,19 +76,7 @@ export default function Privacidade() {
         </li>
       </ul>
 
-      <h2 style={h2Style}>3. Dados sensíveis</h2>
-      <p>
-        Algumas informações que você pode escolher fornecer, como raça ou cor,
-        deficiência (PCD) e maternidade, são dados pessoais sensíveis pela
-        LGPD. Elas são sempre <strong>voluntárias</strong>: você pode usar o
-        Bia sem informá-las. Só tratamos esses dados com o seu consentimento
-        específico e destacado, e apenas para a finalidade informada no
-        momento da coleta, como a inclusão em processos seletivos e vagas
-        afirmativas. Você pode retirar o consentimento a qualquer momento,
-        nas configurações do app ou pelo e-mail de privacidade.
-      </p>
-
-      <h2 style={h2Style}>4. Para que usamos os seus dados</h2>
+      <h2 style={h2Style}>3. Para que usamos os seus dados</h2>
       <ul>
         <li>Criar e manter a sua conta e permitir o acesso ao aplicativo.</li>
         <li>
@@ -107,11 +94,11 @@ export default function Privacidade() {
       <p>
         As bases legais usadas são, conforme o caso: execução do contrato (os
         Termos de Uso), cumprimento de obrigação legal, legítimo interesse
-        (segurança e prevenção a fraudes) e consentimento (dados sensíveis,
-        localização, notificações e comunicações opcionais).
+        (segurança e prevenção a fraudes) e consentimento (localização,
+        notificações e comunicações opcionais).
       </p>
 
-      <h2 style={h2Style}>5. Permissões do aparelho</h2>
+      <h2 style={h2Style}>4. Permissões do aparelho</h2>
       <p>
         O app só pede as permissões abaixo, e você pode negá-las ou
         revogá-las a qualquer momento nas configurações do aparelho:
@@ -141,7 +128,7 @@ export default function Privacidade() {
         contatos do aparelho.
       </p>
 
-      <h2 style={h2Style}>6. Chat com a BIA (IA)</h2>
+      <h2 style={h2Style}>5. Chat com a BIA (IA)</h2>
       <p>
         As mensagens do chat são enviadas ao Google (Gemini) apenas para gerar
         as respostas. O histórico fica guardado por até{" "}
@@ -152,7 +139,7 @@ export default function Privacidade() {
         senhas, dados bancários ou de saúde.
       </p>
 
-      <h2 style={h2Style}>7. Com quem compartilhamos</h2>
+      <h2 style={h2Style}>6. Com quem compartilhamos</h2>
       <ul>
         <li>
           <strong>Empresas e recrutadoras:</strong> quando você se candidata a
@@ -167,6 +154,10 @@ export default function Privacidade() {
             <li>Expo: envio de notificações;</li>
             <li>RevenueCat: gerenciamento das assinaturas;</li>
             <li>Vercel: hospedagem;</li>
+            <li>
+              Supabase: banco de dados e armazenamento de fotos e currículos;
+            </li>
+            <li>Resend: envio de e-mails;</li>
             <li>Google AI (Gemini): respostas do chat com a BIA.</li>
           </ul>
         </li>
@@ -180,14 +171,14 @@ export default function Privacidade() {
         anunciantes, a sua identidade não é exibida publicamente.
       </p>
 
-      <h2 style={h2Style}>8. Transferência internacional de dados</h2>
+      <h2 style={h2Style}>7. Transferência internacional de dados</h2>
       <p>
         Esses operadores podem processar dados fora do Brasil. Nesses casos, a
         transferência segue as salvaguardas previstas na LGPD, como cláusulas
         contratuais e a adoção de padrões adequados de proteção de dados.
       </p>
 
-      <h2 style={h2Style}>9. Por quanto tempo guardamos os dados</h2>
+      <h2 style={h2Style}>8. Por quanto tempo guardamos os dados</h2>
       <p>
         Guardamos os dados enquanto a sua conta estiver ativa. Depois da
         exclusão da conta:
@@ -212,7 +203,7 @@ export default function Privacidade() {
         conta ativa. Após esses prazos, os dados são apagados ou anonimizados.
       </p>
 
-      <h2 style={h2Style}>10. Seus direitos</h2>
+      <h2 style={h2Style}>9. Seus direitos</h2>
       <p>Você pode pedir, a qualquer momento:</p>
       <ul>
         <li>confirmação de que tratamos seus dados e acesso a eles;</li>
@@ -236,11 +227,11 @@ export default function Privacidade() {
         Nacional de Proteção de Dados (ANPD).
       </p>
 
-      <h2 style={h2Style}>11. Exclusão de conta</h2>
+      <h2 style={h2Style}>10. Exclusão de conta</h2>
       <p>
         Você pode excluir a sua conta diretamente nas configurações do
         aplicativo. Ao excluir, removemos os seus dados pessoais, exceto as
-        informações que a lei nos obriga a guardar, pelos prazos da seção 9.
+        informações que a lei nos obriga a guardar, pelos prazos da seção 8.
         Excluir a conta não cancela a assinatura no Google Play.
       </p>
       <p>
@@ -249,7 +240,7 @@ export default function Privacidade() {
         <Link href="/excluir-conta">Excluir conta</Link>.
       </p>
 
-      <h2 style={h2Style}>12. Segurança</h2>
+      <h2 style={h2Style}>11. Segurança</h2>
       <p>
         Adotamos medidas técnicas e organizacionais para proteger os seus
         dados contra acesso não autorizado, perda e uso indevido. O seu
@@ -262,23 +253,14 @@ export default function Privacidade() {
         conta.
       </p>
 
-      <h2 style={h2Style}>13. Crianças e adolescentes</h2>
-      <p>
-        O Bia é destinado a pessoas a partir de 14 anos. Os dados de
-        adolescentes (de 14 a 17 anos) são tratados sempre no melhor interesse
-        deles, conforme o art. 14 da LGPD. Menores de 18 anos só podem
-        contratar planos pagos com a autorização do responsável legal. Se
-        identificarmos dados de menores de 14 anos, eles serão excluídos.
-      </p>
-
-      <h2 style={h2Style}>14. Encarregada de proteção de dados (DPO)</h2>
+      <h2 style={h2Style}>12. Encarregada de proteção de dados (DPO)</h2>
       <p>
         A pessoa responsável por receber as suas solicitações e as
         comunicações da ANPD é {NOME_ENCARREGADA}. Contato:{" "}
         <a href={`mailto:${EMAIL_PRIVACIDADE}`}>{EMAIL_PRIVACIDADE}</a>.
       </p>
 
-      <h2 style={h2Style}>15. Alterações nesta Política</h2>
+      <h2 style={h2Style}>13. Alterações nesta Política</h2>
       <p>
         Podemos atualizar esta Política periodicamente. Quando houver mudanças
         relevantes, avisaremos você pela plataforma e indicaremos a nova

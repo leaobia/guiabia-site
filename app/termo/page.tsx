@@ -2,8 +2,8 @@ import Link from "next/link";
  
 export const metadata = { title: "Termos de uso | Bia" };
  
-const VERSAO = "1.0";
-const ATUALIZADO_EM = "25 de outubro de 2026";
+const VERSAO = "1.1";
+const ATUALIZADO_EM = "2 de novembro de 2026";
 const DESENVOLVEDORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_SUPORTE = "bia.comunidade.feminina@gmail.com";
 const ASSINATURAS_PLAY = "https://play.google.com/store/account/subscriptions";
@@ -45,17 +45,12 @@ export default function Termos() {
         exigem cadastro com informações verdadeiras, completas e atualizadas.
       </p>
       <p>
-        1.2. O uso do aplicativo é permitido a partir dos 14 anos. Menores de
-        18 anos só podem contratar planos pagos com a autorização do
-        responsável legal.
-      </p>
-      <p>
-        1.3. Você é responsável por manter a confidencialidade das suas
+        1.2. Você é responsável por manter a confidencialidade das suas
         credenciais de acesso (e-mail e senha) e por todas as atividades
         realizadas na sua conta.
       </p>
       <p>
-        1.4. A plataforma pode recusar cadastros, suspender ou encerrar
+        1.3. A plataforma pode recusar cadastros, suspender ou encerrar
         contas que tenham informações falsas ou que violem as regras de boa
         convivência.
       </p>
@@ -99,7 +94,7 @@ export default function Termos() {
         </li>
         <li>
           <strong>Bia Pro</strong> (R$ 29,90/mês ou R$ 219,90/ano): até 500
-          mensagens por mês no chat da BIA, até 5 currículos salvos, vagas
+          mensagens por mês no chat da BIA, currículos ilimitados, vagas
           ilimitadas como recrutadora e 1 empreendimento na vitrine com até 18
           fotos.
         </li>
@@ -112,6 +107,11 @@ export default function Termos() {
       <p>
         3.3. A assinatura é renovada automaticamente ao fim de cada período
         (mensal ou anual), com nova cobrança, até que você a cancele.
+      </p>
+      <p>
+        3.4. Cursos pagos são comprados avulsos pelo Google Play, com acesso
+        vitalício enquanto a conta existir. Reembolso aprovado remove o acesso
+        ao curso. Cursos concluídos geram certificado com código de validação.
       </p>
 
       <h2 id="reembolso" style={h2Style}>
@@ -198,18 +198,11 @@ export default function Termos() {
  
       <h2 style={h2Style}>8. Privacidade e tratamento de dados</h2>
       <p>
-        8.1. O tratamento dos seus dados pessoais é regido pela nossa{" "}
+        O tratamento dos seus dados pessoais é regido pela nossa{" "}
         <Link href="/privacidade">Política de Privacidade</Link>, em
         conformidade com a Lei Geral de Proteção de Dados (LGPD). Ao aceitar
         estes Termos, você declara que leu e entendeu a Política de
         Privacidade.
-      </p>
-      <p>
-        8.2. Informações como raça, deficiência ou maternidade são dados
-        sensíveis. Elas são sempre voluntárias, só são coletadas com o seu
-        consentimento específico e são usadas apenas para as finalidades
-        informadas na Política de Privacidade, como a inclusão em processos
-        seletivos.
       </p>
  
       <h2 style={h2Style}>9. Modificações dos Termos</h2>
