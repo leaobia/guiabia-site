@@ -32,6 +32,7 @@ export const HOME = "/recrutadora/vagas";
 export const LOGIN = "/recrutadora/entrar";
 export const ACTIVATE = "/recrutadora/ativar";
 export const VERIFY = "/recrutadora/verificar-email";
+export const BILLING = "/recrutadora/assinatura";
 
 /** Para onde vai quem acabou de entrar (ou de verificar o e-mail). */
 export function nextStep(user: User | null, profile: RecruiterProfile | null, skipVerify = false) {

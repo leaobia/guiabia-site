@@ -16,6 +16,7 @@ import {
 } from "@/lib/recrutadora/api";
 import Icon from "../../icons";
 import { HOME, usePortal } from "../../PortalProvider";
+import { useConfirm } from "../../ConfirmDialog";
 import { AccessBlock, canPublish, ErrorMessage, Loading, PortalShell } from "../../ui";
 
 const STATUSES = Object.keys(APPLICATION_STATUS_LABEL) as ApplicationStatus[];
@@ -39,6 +40,7 @@ export default function Candidatas() {
   const [filter, setFilter] = useState<ApplicationStatus | "all">("all");
   const [error, setError] = useState<string | null>(null);
   const [toggling, setToggling] = useState(false);
+  const [dialog, confirm] = useConfirm();
   const loadedAt = useRef(0);
 
   const loadApps = useCallback(async () => {
@@ -78,6 +80,16 @@ export default function Candidatas() {
   const toggleJob = async () => {
     if (!job) return;
     const next = job.status === "active" ? "closed" : "active";
+    if (
+      next === "closed" &&
+      !(await confirm({
+        title: "Encerrar esta vaga?",
+        message: "Ela para de receber candidaturas no app. As candidatas que já se inscreveram continuam aqui, e você pode reabrir a vaga quando quiser.",
+        confirmLabel: "Encerrar vaga",
+      }))
+    ) {
+      return;
+    }
     setToggling(true);
     setError(null);
     try {
@@ -94,6 +106,7 @@ export default function Candidatas() {
 
   return (
     <PortalShell>
+      {dialog}
       <div className="rp-stack lg">
         <Link href={HOME} className="rp-back">
           <Icon name="arrowLeft" size={18} /> Voltar para as vagas

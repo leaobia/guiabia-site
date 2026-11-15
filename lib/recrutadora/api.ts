@@ -92,6 +92,34 @@ export type Application = {
   createdAt: string;
 };
 
+export type PlanTier = "monthly" | "annual";
+
+export type WebPlan = {
+  tier: PlanTier;
+  title: string;
+  priceCents: number;
+  priceFormatted: string;
+  frequencyMonths: number;
+};
+
+export type BillingStatus = {
+  planActive: boolean;
+  planSource: "google_play" | "web" | "cortesia" | null;
+  canSubscribe: boolean;
+  message: string | null;
+  subscription: {
+    status: "pending" | "active" | "past_due" | "cancelled";
+    tier: PlanTier;
+    priceCents: number;
+    priceFormatted: string;
+    currentPeriodEnd: string | null;
+    accessExpiresAt: string | null;
+    nextPaymentDate: string | null;
+    cancelledAt: string | null;
+  } | null;
+  plans: WebPlan[];
+};
+
 export class ApiError extends Error {
   constructor(
     public status: number,
@@ -264,12 +292,21 @@ export const api = {
       "PATCH",
       { status }
     ).then((r) => r.data),
+
+  // Assinatura do BIA Pro pelo site (Mercado Pago). Os preços vêm sempre do back.
+  webPlans: () => publicRequest<{ data: WebPlan[] }>("/billing/web/plans").then((r) => r.data),
+  billingStatus: () => request<{ data: BillingStatus }>("/billing/web/subscription").then((r) => r.data),
+  subscribe: (tier: PlanTier, cardToken: string, payerEmail?: string) =>
+    request<{ data: BillingStatus }>("/billing/web/subscription", "POST", { tier, cardToken, payerEmail }).then(
+      (r) => r.data
+    ),
+  cancelSubscription: () =>
+    request<{ data: BillingStatus }>("/billing/web/subscription/cancel", "POST", {}).then((r) => r.data),
 };
 
 /* ---------- textos ---------- */
 
-export const NO_ACCESS_MESSAGE =
-  "Seu período de teste acabou. Para continuar publicando vagas, assine o BIA Pro pelo app ou fale com a equipe BIA.";
+export const NO_ACCESS_MESSAGE = "Seu período de teste acabou. Para continuar publicando vagas, assine o BIA Pro.";
 
 export const WORK_MODEL_LABEL: Record<WorkModel, string> = {
   remote: "Remoto",
@@ -298,6 +335,9 @@ export const APPLICATION_STATUS_LABEL: Record<ApplicationStatus, string> = {
   rejected: "Não seguiu",
   hired: "Contratada",
 };
+
+export const formatCents = (cents: number) =>
+  (cents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 export const formatDate = (iso: string) => {
   const d = new Date(iso);

@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export const metadata = { title: "Política de privacidade | Bia" };
 
-const VERSAO = "1.2";
-const ATUALIZADO_EM = "2 de novembro de 2026";
+const VERSAO = "1.3";
+const ATUALIZADO_EM = "15 de novembro de 2026";
 const CONTROLADORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_PRIVACIDADE = "bia.comunidade.feminina@gmail.com";
 const NOME_ENCARREGADA = "BIANCA PEREIRA LEÃO";
@@ -69,10 +69,21 @@ export default function Privacidade() {
           ele entre em contato.
         </li>
         <li>
-          <strong>Assinaturas:</strong> os pagamentos são processados pelo
-          Google Play e gerenciados pelo RevenueCat. O app recebe só o status
-          da assinatura (plano, validade e se está ativa) e nunca tem acesso
-          aos dados do seu cartão ou de outro meio de pagamento.
+          <strong>Assinaturas pelo aplicativo:</strong> os pagamentos são
+          processados pelo Google Play e gerenciados pelo RevenueCat. O app
+          recebe só o status da assinatura (plano, validade e se está ativa).
+        </li>
+        <li>
+          <strong>Assinaturas pelo site:</strong> o pagamento com cartão de
+          crédito é processado pelo Mercado Pago. Os dados do cartão são
+          digitados no formulário do próprio Mercado Pago; o Bia recebe apenas
+          um código de uso único para criar a assinatura e guarda o plano, o
+          valor, as datas e o status das cobranças, o e-mail informado para o
+          pagamento e o identificador da assinatura no Mercado Pago.
+        </li>
+        <li>
+          Em nenhum caso o Bia tem acesso ao número, à validade ou ao código de
+          segurança do seu cartão.
         </li>
         <li>
           <strong>Dados técnicos:</strong> informações do dispositivo e do
@@ -161,7 +172,12 @@ export default function Privacidade() {
           <ul>
             <li>Google: Google Play (assinaturas) e Firebase/FCM (notificações);</li>
             <li>Expo: envio de notificações;</li>
-            <li>RevenueCat: gerenciamento das assinaturas;</li>
+            <li>RevenueCat: gerenciamento das assinaturas do aplicativo;</li>
+            <li>
+              Mercado Pago: pagamentos e assinaturas feitos pelo site. Os dados
+              do cartão são tratados diretamente pelo Mercado Pago, conforme a
+              política de privacidade dele;
+            </li>
             <li>Vercel: hospedagem;</li>
             <li>
               Supabase: banco de dados e armazenamento de fotos e currículos;
@@ -241,7 +257,8 @@ export default function Privacidade() {
         Você pode excluir a sua conta diretamente nas configurações do
         aplicativo. Ao excluir, removemos os seus dados pessoais, exceto as
         informações que a lei nos obriga a guardar, pelos prazos da seção 8.
-        Excluir a conta não cancela a assinatura no Google Play.
+        A assinatura feita pelo site é cancelada automaticamente com a
+        exclusão; a do Google Play não, e precisa ser cancelada no Google Play.
       </p>
       <p>
         O passo a passo, o pedido de exclusão sem o aplicativo e a lista do

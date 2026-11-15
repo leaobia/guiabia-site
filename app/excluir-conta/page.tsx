@@ -108,7 +108,8 @@ export default function ExcluirConta() {
         <ul>
           <li>
             <strong>Registros de pagamento e assinatura</strong> (plano,
-            datas, status e identificador da compra no Google Play):
+            datas, status e identificador da compra no Google Play ou da
+            assinatura no Mercado Pago):
             guardados por até{" "}
             <strong>5 anos</strong>, por obrigação legal e fiscal e para
             atender eventuais reembolsos ou contestações.
@@ -140,7 +141,8 @@ export default function ExcluirConta() {
           >
             play.google.com/store/account/subscriptions
           </a>
-          .
+          . A assinatura feita pelo site (com cartão, pelo Mercado Pago) é
+          cancelada automaticamente quando a conta é excluída.
         </div>
 
         <p style={{ marginTop: 32 }}>

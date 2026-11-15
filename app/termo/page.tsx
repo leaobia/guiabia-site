@@ -2,8 +2,8 @@ import Link from "next/link";
  
 export const metadata = { title: "Termos de uso | Bia" };
  
-const VERSAO = "1.1";
-const ATUALIZADO_EM = "2 de novembro de 2026";
+const VERSAO = "1.2";
+const ATUALIZADO_EM = "15 de novembro de 2026";
 const DESENVOLVEDORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_SUPORTE = "bia.comunidade.feminina@gmail.com";
 const ASSINATURAS_PLAY = "https://play.google.com/store/account/subscriptions";
@@ -83,8 +83,6 @@ export default function Termos() {
       <h2 style={h2Style}>3. Planos e pagamentos</h2>
       <p>
         3.1. O Bia oferece funcionalidades gratuitas e os planos pagos abaixo.
-        O preço final é sempre o exibido no Google Play no momento da
-        contratação.
       </p>
       <ul>
         <li>
@@ -93,23 +91,49 @@ export default function Termos() {
           ilimitadas.
         </li>
         <li>
-          <strong>Bia Pro</strong> (R$ 29,90/mês ou R$ 219,90/ano): até 500
+          <strong>Bia Pro</strong> (R$ 29,90/mês ou R$ 219,99/ano): até 500
           mensagens por mês no chat da BIA, currículos ilimitados, vagas
           ilimitadas como recrutadora e 1 empreendimento na vitrine com até 18
           fotos.
         </li>
       </ul>
+      <p>3.2. Os planos podem ser contratados de duas formas:</p>
+      <ul>
+        <li>
+          <strong>Pelo aplicativo:</strong> o pagamento é feito pela sua conta
+          Google, via Google Play. O preço final é o exibido no Google Play no
+          momento da contratação.
+        </li>
+        <li>
+          <strong>Pelo site</strong> (Portal da Recrutadora, em{" "}
+          <Link href="/recrutadora">app.guiabia.com.br/recrutadora</Link>):
+          apenas o Bia Pro, com cartão de crédito, processado pelo Mercado
+          Pago. O plano mensal custa R$ 29,90 por mês e o anual custa R$ 219,99,
+          cobrados de uma só vez por ano. Os dados do cartão são digitados no
+          formulário seguro do Mercado Pago e não são recebidos nem guardados
+          pelo Bia.
+        </li>
+      </ul>
       <p>
-        3.2. O pagamento é feito pela sua conta Google, via Google Play. O
-        acesso ao plano é liberado após a confirmação do pagamento pelo
-        Google Play.
+        3.3. O acesso ao plano é liberado após a confirmação do pagamento pelo
+        Google Play ou pelo Mercado Pago. No site, a confirmação pode levar
+        alguns minutos.
       </p>
       <p>
-        3.3. A assinatura é renovada automaticamente ao fim de cada período
-        (mensal ou anual), com nova cobrança, até que você a cancele.
+        3.4. A assinatura é renovada automaticamente ao fim de cada período
+        (mensal ou anual), com nova cobrança no mesmo meio de pagamento (conta
+        Google ou cartão de crédito), até que você a cancele. Se a cobrança da
+        renovação no cartão for recusada, o Mercado Pago tenta cobrar de novo;
+        se nenhuma tentativa for aprovada, o acesso ao plano é encerrado.
       </p>
       <p>
-        3.4. Cursos pagos são comprados avulsos pelo Google Play, com acesso
+        3.5. Ao ativar o perfil de recrutadora, você ganha 30 dias grátis para
+        publicar vagas. O teste grátis não vira assinatura automaticamente: ao
+        fim dele, nada é cobrado. Se você assinar o Bia Pro durante o teste, a
+        cobrança começa na data da assinatura.
+      </p>
+      <p>
+        3.6. Cursos pagos são comprados avulsos pelo Google Play, com acesso
         vitalício enquanto a conta existir. Reembolso aprovado remove o acesso
         ao curso. Cursos concluídos geram certificado com código de validação.
       </p>
@@ -118,33 +142,47 @@ export default function Termos() {
         4. Cancelamento e reembolso
       </h2>
       <p>
-        4.1. Você pode cancelar a assinatura a qualquer momento no Google Play,
-        em{" "}
+        4.1. <strong>Assinatura pelo aplicativo:</strong> você pode cancelar a
+        qualquer momento no Google Play, em{" "}
         <a href={ASSINATURAS_PLAY} target="_blank" rel="noopener noreferrer">
           play.google.com/store/account/subscriptions
         </a>
         , ou pelo botão &quot;Gerenciar ou cancelar assinatura&quot; no
-        aplicativo. Com o cancelamento, a renovação é interrompida e o acesso
-        continua até o fim do período já pago.
+        aplicativo.
       </p>
       <p>
-        4.2. Excluir a sua conta <strong>não</strong> cancela a assinatura no
-        Google Play. Cancele a assinatura antes, para não ser cobrada de novo.
+        4.2. <strong>Assinatura pelo site:</strong> você pode cancelar a
+        qualquer momento no Portal da Recrutadora, em Assinatura, no botão
+        &quot;Cancelar renovação&quot;.
       </p>
       <p>
-        4.3. Conforme o Código de Defesa do Consumidor, você pode desistir da
+        4.3. Nos dois casos, o cancelamento interrompe a renovação e não há
+        novas cobranças. O acesso ao plano continua até o fim do período já
+        pago; no site, essa data aparece na tela de Assinatura.
+      </p>
+      <p>
+        4.4. Ao excluir a sua conta, a assinatura feita pelo site é cancelada
+        automaticamente. Já a assinatura do Google Play <strong>não</strong> é
+        cancelada com a exclusão da conta: cancele-a antes, para não ser
+        cobrada de novo.
+      </p>
+      <p>
+        4.5. Conforme o Código de Defesa do Consumidor, você pode desistir da
         contratação em até 7 (sete) dias corridos após o pagamento e receber o
         valor integral de volta.
       </p>
       <p>
-        4.4. O pedido de reembolso pode ser feito pelo Google Play ou pelo
-        e-mail <a href={`mailto:${EMAIL_SUPORTE}`}>{EMAIL_SUPORTE}</a>,
-        informando o e-mail cadastrado no aplicativo e a data do pagamento. O
-        estorno é feito pelo Google, no mesmo meio de pagamento usado na
-        compra.
+        4.6. O pedido de reembolso pode ser feito pelo e-mail{" "}
+        <a href={`mailto:${EMAIL_SUPORTE}`}>{EMAIL_SUPORTE}</a>, informando o
+        e-mail cadastrado e a data do pagamento. Compras pelo aplicativo também
+        podem ser reembolsadas pelo Google Play. O estorno é feito no mesmo
+        meio de pagamento usado na compra: pelo Google, nas compras do
+        aplicativo, e pelo Mercado Pago, no cartão de crédito, nas assinaturas
+        do site. O prazo para o valor aparecer na fatura depende da operadora
+        do cartão.
       </p>
       <p>
-        4.5. Com o reembolso, o acesso ao plano é encerrado.
+        4.7. Com o reembolso, o acesso ao plano é encerrado.
       </p>
  
       <h2 style={h2Style}>5. Regras de conduta na comunidade e nas avaliações</h2>
@@ -219,7 +257,8 @@ export default function Termos() {
         10.1. Você pode solicitar a exclusão da sua conta e dos seus dados
         diretamente nas configurações do aplicativo ou pela página{" "}
         <Link href="/excluir-conta">Excluir conta</Link>. A exclusão da conta
-        não cancela a assinatura no Google Play (veja a seção 4).
+        cancela a assinatura feita pelo site, mas não a do Google Play (veja o
+        item 4.4).
       </p>
       <p>
         10.2. Podemos suspender o acesso de qualquer usuária que viole estes

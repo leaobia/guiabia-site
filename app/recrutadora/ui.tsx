@@ -6,7 +6,7 @@ import { cloneElement, useState, type FormEvent, type ReactElement, type ReactNo
 import Avatar from "@/components/Avatar";
 import { ApiError, NO_ACCESS_MESSAGE, type RecruiterProfile } from "@/lib/recrutadora/api";
 import Icon from "./icons";
-import { ACTIVATE, HOME, usePortal } from "./PortalProvider";
+import { ACTIVATE, BILLING, HOME, usePortal } from "./PortalProvider";
 
 export const Brand = ({ href = "/recrutadora" }: { href?: string }) => (
   <Link href={href} className="rp-brand">
@@ -69,6 +69,9 @@ export function PortalShell({ children }: { children: ReactNode }) {
                 <Link href={ACTIVATE} aria-current={current(ACTIVATE)}>
                   <Icon name="building" /> <span className="label">Empresa</span>
                 </Link>
+                <Link href={BILLING} aria-current={current(BILLING)}>
+                  <Icon name="sparkle" /> <span className="label">Assinatura</span>
+                </Link>
               </>
             )}
             <button type="button" onClick={logout}>
@@ -121,9 +124,12 @@ export function AccessBlock({ profile }: { profile: RecruiterProfile | null }) {
   }
   if (!profile.hasAccess) {
     return (
-      <div className="rp-notice dark" role="alert">
+      <div className="rp-notice dark" role="alert" style={{ flexWrap: "wrap" }}>
         <Avatar size={52} state="thinking" dot={false} />
-        <span>{NO_ACCESS_MESSAGE}</span>
+        <span style={{ flex: "1 1 260px" }}>{NO_ACCESS_MESSAGE}</span>
+        <Link className="rp-btn coral small" href={BILLING}>
+          Assinar o BIA Pro
+        </Link>
       </div>
     );
   }

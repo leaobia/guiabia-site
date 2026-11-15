@@ -169,6 +169,32 @@ textarea.rp-input { resize:vertical; min-height:120px; }
 .rp-app-section b { font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; color:var(--rp-muted); }
 .rp-app-btn { display:block; text-align:center; padding:12px; border-radius:999px; background:var(--violet); color:#fff; font-weight:800; }
 
+/* assinatura */
+.rp-plans { display:grid; gap:12px; }
+@media (min-width:640px) { .rp-plans { grid-template-columns:1fr 1fr; } }
+.rp-plan { position:relative; display:grid; gap:6px; padding:18px; border-radius:22px; background:#fff; border:2px solid var(--rp-line); box-shadow:var(--rp-shadow); cursor:pointer; transition:border-color .15s, box-shadow .15s; }
+.rp-plan:hover { border-color:var(--lilac); }
+.rp-plan.on { border-color:var(--violet); box-shadow:0 0 0 4px var(--mist), var(--rp-shadow); }
+.rp-plan input { position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
+.rp-plan:has(input:focus-visible) { box-shadow:0 0 0 4px var(--glow); }
+.rp-plan .price { font-size:1.6rem; font-weight:800; letter-spacing:-.02em; color:var(--violet); }
+.rp-checks { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.rp-checks li { display:flex; align-items:center; gap:10px; font-weight:600; }
+.rp-checks svg { color:var(--ok-deep); background:var(--ok-soft); border-radius:50%; padding:3px; width:26px; height:26px; }
+.rp-notice.dark .rp-btn { margin-left:auto; flex:none; }
+
+/* modal de confirmação */
+.rp-modal { border:0; padding:0; background:transparent; max-width:min(440px, calc(100vw - 32px)); width:100%; color:var(--rp-text); }
+.rp-modal::backdrop { background:rgba(45,15,82,.45); backdrop-filter:blur(2px); }
+.rp-modal[open] { animation:rp-pop .18s ease-out; }
+.rp-modal-box { background:#fff; border-radius:28px; padding:28px 24px 24px; box-shadow:var(--rp-shadow-lg); text-align:center; justify-items:center; }
+.rp-modal-actions { display:flex; flex-wrap:wrap-reverse; justify-content:center; gap:10px; margin-top:6px; width:100%; }
+.rp-modal-actions .rp-btn { flex:1 1 150px; }
+.rp-btn.danger-solid { background:#c0392b; border-color:#c0392b; box-shadow:0 6px 16px rgba(192,57,43,.25); }
+.rp-btn.danger-solid:hover { background:#962d22; border-color:#962d22; }
+@keyframes rp-pop { from { opacity:0; transform:translateY(8px) scale(.98); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .rp-modal[open] { animation:none; } }
+
 /* candidatas */
 .rp-cand { display:grid; gap:14px; }
 .rp-cand-head { display:flex; gap:14px; align-items:flex-start; }

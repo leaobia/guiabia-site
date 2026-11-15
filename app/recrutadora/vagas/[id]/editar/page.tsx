@@ -7,6 +7,7 @@ import { api, type Job, type JobInput } from "@/lib/recrutadora/api";
 import Icon from "../../../icons";
 import { HOME, usePortal } from "../../../PortalProvider";
 import { AccessBlock, canPublish, ErrorMessage, Loading, PortalShell } from "../../../ui";
+import { useConfirm } from "../../../ConfirmDialog";
 import JobForm from "../../JobForm";
 import { handleAccessError } from "../../errors";
 
@@ -17,6 +18,7 @@ export default function EditarVaga() {
   const [job, setJob] = useState<Job | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [archiving, setArchiving] = useState(false);
+  const [dialog, confirm] = useConfirm();
   const allowed = canPublish(profile);
 
   useEffect(() => {
@@ -37,7 +39,13 @@ export default function EditarVaga() {
   };
 
   const archive = async () => {
-    if (!window.confirm("Arquivar esta vaga? Ela sai do app e da sua lista de vagas.")) return;
+    const ok = await confirm({
+      title: "Arquivar esta vaga?",
+      message: "Ela sai do app e da sua lista de vagas, e não dá para desfazer pelo portal.",
+      confirmLabel: "Arquivar vaga",
+      danger: true,
+    });
+    if (!ok) return;
     setArchiving(true);
     setError(null);
     try {
@@ -51,6 +59,7 @@ export default function EditarVaga() {
 
   return (
     <PortalShell>
+      {dialog}
       <div className="rp-stack lg">
         <Link href={detail} className="rp-back">
           <Icon name="arrowLeft" size={18} /> Voltar para a vaga

@@ -81,8 +81,15 @@ export default function JobForm({ initial, defaultCompany, submitLabel, onSubmit
     setV((prev) => ({ ...prev, [key]: e.target.value }));
     if (fields.errors[key]) fields.setErrors(({ [key]: _, ...rest }) => rest);
   };
+  // "Geral" e as opções específicas se excluem: marcar uma desmarca a outra; sem nenhuma, volta para Geral
   const toggleTag = (tag: string) =>
-    setTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
+    setTags((prev) => {
+      if (prev.includes(tag)) {
+        const rest = prev.filter((t) => t !== tag);
+        return rest.length ? rest : ["geral"];
+      }
+      return tag === "geral" ? ["geral"] : [...prev.filter((t) => t !== "geral"), tag];
+    });
 
   /** Valida as etapas até `last`; se alguma falhar, vai para ela e mostra os erros. */
   const checkUpTo = (last: number) => {
