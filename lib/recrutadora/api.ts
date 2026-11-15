@@ -108,7 +108,8 @@ export type BillingStatus = {
   canSubscribe: boolean;
   message: string | null;
   subscription: {
-    status: "pending" | "active" | "past_due" | "cancelled";
+    // "scheduled" só existe em teoria: a reativada aparece em `scheduled`, e `subscription` é o acesso atual
+    status: "pending" | "active" | "past_due" | "cancelled" | "scheduled";
     tier: PlanTier;
     priceCents: number;
     priceFormatted: string;
@@ -118,6 +119,10 @@ export type BillingStatus = {
     cancelledAt: string | null;
   } | null;
   plans: WebPlan[];
+  /** Renovação cancelada com acesso ainda valendo: pode reativar (cobrança começa quando o acesso atual acabar). */
+  canReactivate?: boolean;
+  /** Assinatura reativada que ainda não começou a cobrar. */
+  scheduled?: { tier: PlanTier; priceCents: number; priceFormatted: string; startsAt: string } | null;
 };
 
 export class ApiError extends Error {
@@ -298,6 +303,10 @@ export const api = {
   billingStatus: () => request<{ data: BillingStatus }>("/billing/web/subscription").then((r) => r.data),
   subscribe: (tier: PlanTier, cardToken: string, payerEmail?: string) =>
     request<{ data: BillingStatus }>("/billing/web/subscription", "POST", { tier, cardToken, payerEmail }).then(
+      (r) => r.data
+    ),
+  reactivateSubscription: (tier: PlanTier, cardToken: string, payerEmail?: string) =>
+    request<{ data: BillingStatus }>("/billing/web/subscription/reactivate", "POST", { tier, cardToken, payerEmail }).then(
       (r) => r.data
     ),
   cancelSubscription: () =>

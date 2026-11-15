@@ -40,6 +40,9 @@ export default function Assinatura() {
   const [tier, setTier] = useState<PlanTier>("annual");
   const [error, setError] = useState<string | null>(null);
   const [justSubscribed, setJustSubscribed] = useState(false);
+  // Renovação cancelada com acesso valendo: assinatura nova que só cobra quando o acesso atual acabar
+  const [reactivating, setReactivating] = useState(false);
+  const [justReactivated, setJustReactivated] = useState(false);
   const [cancelling, setCancelling] = useState(false);
   const [polls, setPolls] = useState(0);
   const [dialog, confirm] = useConfirm();
@@ -92,6 +95,13 @@ export default function Assinatura() {
       throw new Error("payerEmail"); // o formulário do cartão volta a aceitar envio
     }
     try {
+      if (reactivating) {
+        setStatus(await api.reactivateSubscription(tier, token, payerEmail.trim()));
+        setReactivating(false);
+        setJustReactivated(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
       const s = await api.subscribe(tier, token, payerEmail.trim());
       setStatus(s);
       setJustSubscribed(true);
@@ -99,6 +109,12 @@ export default function Assinatura() {
       if (s.planActive) await reload();
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
+      if (err instanceof ApiError && err.code === "REACTIVATION_NOT_AVAILABLE") {
+        setReactivating(false);
+        await load().catch(() => {});
+        setError(err.message);
+        return;
+      }
       if (err instanceof ApiError && (err.code === "SUBSCRIPTION_PENDING" || err.code === "PLAN_ALREADY_ACTIVE")) {
         await load().catch(() => {});
         setPolls(0);
@@ -115,9 +131,9 @@ export default function Assinatura() {
   const cancel = async () => {
     const until = status?.subscription?.currentPeriodEnd;
     const ok = await confirm({
-      title: "Cancelar a renovação?",
+      title: status?.scheduled ? "Cancelar a reativação?" : "Cancelar a renovação?",
       message: `A assinatura não será mais cobrada.${until ? ` Você continua com acesso até ${formatDate(until)}.` : ""}`,
-      confirmLabel: "Cancelar renovação",
+      confirmLabel: status?.scheduled ? "Cancelar reativação" : "Cancelar renovação",
       cancelLabel: "Manter assinatura",
       danger: true,
     });
@@ -126,6 +142,7 @@ export default function Assinatura() {
     setError(null);
     try {
       setStatus(await api.cancelSubscription());
+      setJustReactivated(false);
       await reload();
     } catch (err) {
       setError((err as Error).message);
@@ -138,6 +155,8 @@ export default function Assinatura() {
   const monthly = plans?.find((p) => p.tier === "monthly");
   const annual = plans?.find((p) => p.tier === "annual");
   const yearlySaving = monthly && annual ? monthly.priceCents * 12 - annual.priceCents : 0;
+  const accessEnd = status?.subscription?.currentPeriodEnd ?? status?.subscription?.accessExpiresAt ?? null;
+  const showCheckout = !!status && !!plans && ((!status.planActive && !pending) || reactivating);
 
   return (
     <PortalShell>
@@ -157,8 +176,19 @@ export default function Assinatura() {
         <ErrorMessage error={error} />
         {!status && !error && <Loading />}
 
-        {status?.planActive && (
-          <ActivePlan status={status} justSubscribed={justSubscribed} cancelling={cancelling} onCancel={cancel} />
+        {status?.planActive && !reactivating && (
+          <ActivePlan
+            status={status}
+            justSubscribed={justSubscribed}
+            justReactivated={justReactivated}
+            cancelling={cancelling}
+            onCancel={cancel}
+            onReactivate={() => {
+              setError(null);
+              setReactivating(true);
+              setTier(status.subscription?.tier ?? "annual");
+            }}
+          />
         )}
 
         {pending && (
@@ -178,10 +208,29 @@ export default function Assinatura() {
           </div>
         )}
 
-        {status && !status.planActive && !pending && plans && (
+        {showCheckout && status && plans && (
           <div className="rp-editor">
             <div className="rp-stack lg">
-              {profile?.trialActive && (
+              {reactivating && (
+                <div className="rp-stack">
+                  <p className="rp-notice">
+                    <Icon name="calendar" size={22} />
+                    <span>
+                      <strong>Nada é cobrado agora.</strong>{" "}
+                      {accessEnd
+                        ? `A primeira cobrança será em ${formatDate(accessEnd)}, quando o seu acesso atual acabar.`
+                        : "A primeira cobrança acontece quando o seu acesso atual acabar."}{" "}
+                      Você pode trocar de plano.
+                    </span>
+                  </p>
+                  <div>
+                    <button type="button" className="rp-btn secondary small" onClick={() => setReactivating(false)}>
+                      <Icon name="arrowLeft" size={16} /> Voltar sem reativar
+                    </button>
+                  </div>
+                </div>
+              )}
+              {!reactivating && profile?.trialActive && (
                 <p className="rp-notice">
                   <Icon name="clock" size={22} />
                   <span>
@@ -190,7 +239,7 @@ export default function Assinatura() {
                   </span>
                 </p>
               )}
-              {status.subscription?.status === "cancelled" && status.subscription.accessExpiresAt && (
+              {!reactivating && status.subscription?.status === "cancelled" && status.subscription.accessExpiresAt && (
                 <p className="rp-notice">
                   <Icon name="calendar" size={22} />
                   <span>Sua assinatura anterior foi cancelada em {formatDate(status.subscription.cancelledAt ?? "")}.</span>
@@ -233,8 +282,9 @@ export default function Assinatura() {
               <div className="rp-stack" style={{ gap: 4 }}>
                 <h2>Pagamento com cartão de crédito</h2>
                 <p className="rp-muted">
-                  {selected?.title}: {selected?.priceFormatted}. Pagamento seguro pelo Mercado Pago; o Guia BIA não
-                  recebe os dados do seu cartão.
+                  {selected?.title}: {selected?.priceFormatted}
+                  {reactivating && accessEnd ? `, a partir de ${formatDate(accessEnd)}` : ""}. Pagamento seguro pelo
+                  Mercado Pago; o Guia BIA não recebe os dados do seu cartão.
                 </p>
               </div>
               <Field
@@ -283,24 +333,31 @@ export default function Assinatura() {
 function ActivePlan({
   status,
   justSubscribed,
+  justReactivated,
   cancelling,
   onCancel,
+  onReactivate,
 }: {
   status: BillingStatus;
   justSubscribed: boolean;
+  justReactivated: boolean;
   cancelling: boolean;
   onCancel: () => void;
+  onReactivate: () => void;
 }) {
   const sub = status.subscription;
   const fromWeb = status.planSource === "web" && sub;
+  const scheduled = status.scheduled;
+  const renewalOff = sub?.status === "cancelled" && !scheduled;
   return (
     <div className="rp-stack" style={{ maxWidth: 720 }}>
       {justSubscribed && <Success>Assinatura confirmada! Obrigada por confiar no Guia BIA.</Success>}
+      {justReactivated && <Success>Assinatura reativada! Nada foi cobrado agora.</Success>}
       <section className="rp-card rp-stack">
         <div className="rp-between">
           <h2>Seu plano BIA Pro está ativo</h2>
-          <span className={`rp-badge ${sub?.status === "cancelled" ? "closed" : "active"}`}>
-            {sub?.status === "cancelled" ? "Renovação cancelada" : "Ativo"}
+          <span className={`rp-badge ${renewalOff ? "closed" : "active"}`}>
+            {renewalOff ? "Renovação cancelada" : scheduled ? "Reativada" : "Ativo"}
           </span>
         </div>
 
@@ -335,10 +392,32 @@ function ActivePlan({
                 </span>
               </p>
             )}
-            {sub.status !== "cancelled" && (
+            {scheduled && (
+              <p className="rp-notice">
+                <Icon name="calendar" size={22} />
+                <span>
+                  Assinatura reativada: plano {TIER_LABEL[scheduled.tier].toLowerCase()} ({scheduled.priceFormatted}). A
+                  primeira cobrança será em {formatDate(scheduled.startsAt)}, quando o acesso atual acabar.
+                </span>
+              </p>
+            )}
+            {renewalOff && status.canReactivate && (
+              <div className="rp-stack" style={{ gap: 8 }}>
+                <p className="rp-muted">
+                  Quer continuar depois dessa data? Reative a assinatura: nada é cobrado agora, e a cobrança começa
+                  quando o acesso atual acabar.
+                </p>
+                <div>
+                  <button type="button" className="rp-btn coral" onClick={onReactivate}>
+                    Reativar assinatura
+                  </button>
+                </div>
+              </div>
+            )}
+            {(sub.status !== "cancelled" || scheduled) && (
               <div>
                 <button type="button" className="rp-btn danger" onClick={onCancel} disabled={cancelling}>
-                  {cancelling ? "Cancelando…" : "Cancelar renovação"}
+                  {cancelling ? "Cancelando…" : scheduled ? "Cancelar reativação" : "Cancelar renovação"}
                 </button>
               </div>
             )}
