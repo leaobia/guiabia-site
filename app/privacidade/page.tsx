@@ -165,8 +165,9 @@ export default function Privacidade() {
         <strong>90 dias</strong> e é apagado quando você exclui a sua conta.
       </p>
       <p>
-        <strong>Não envie dados sensíveis no chat</strong>, como documentos,
-        senhas, dados bancários ou de saúde.
+        <strong>Evite enviar dados sensíveis no chat</strong>, como
+        documentos, senhas, dados bancários ou de saúde. Se você enviar, eles
+        serão tratados como explicado na seção 2A.
       </p>
 
       <h2 style={h2Style}>6. Com quem compartilhamos</h2>
