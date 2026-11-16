@@ -122,7 +122,7 @@ export default function Apresentacao() {
               </li>
               <li>
                 <h3>Publique a vaga</h3>
-                <p className="rp-muted">Em três passos, com a prévia de como ela aparece no app. Marque se é uma vaga afirmativa.</p>
+                <p className="rp-muted">Em dois passos, com a prévia de como ela aparece no app. Marque se é uma vaga afirmativa.</p>
               </li>
               <li>
                 <h3>Receba candidatas</h3>

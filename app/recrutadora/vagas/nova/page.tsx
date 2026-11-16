@@ -45,7 +45,7 @@ export default function NovaVaga() {
         </Link>
         <div className="rp-stack" style={{ gap: 6 }}>
           <h1>Nova vaga</h1>
-          <p className="rp-muted">Em três passos. Ao lado, você vê como a vaga aparece no app.</p>
+          <p className="rp-muted">Em dois passos. Ao lado, você vê como a vaga aparece no app.</p>
         </div>
         {!allowed ? (
           <AccessBlock profile={profile} />
