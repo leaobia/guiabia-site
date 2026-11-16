@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export const metadata = { title: "Política de privacidade | Bia" };
 
-const VERSAO = "1.3";
-const ATUALIZADO_EM = "15 de novembro de 2026";
+const VERSAO = "1.4";
+const ATUALIZADO_EM = "16 de novembro de 2026";
 const CONTROLADORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_PRIVACIDADE = "bia.comunidade.feminina@gmail.com";
 const NOME_ENCARREGADA = "BIANCA PEREIRA LEÃO";
@@ -51,6 +51,10 @@ export default function Privacidade() {
           habilidades e as vagas para as quais você se candidatar.
         </li>
         <li>
+          <strong>Recrutadoras:</strong> nome da empresa, dados de contato e as
+          vagas publicadas.
+        </li>
+        <li>
           <strong>Uso da plataforma:</strong> progresso nas trilhas, cursos
           concluídos, certificados, cupons resgatados, avaliações de
           anunciantes e os negócios que você cadastrar.
@@ -91,6 +95,16 @@ export default function Privacidade() {
           como o identificador para envio de notificações.
         </li>
       </ul>
+
+      <h2 style={h2Style}>2A. Dados sensíveis</h2>
+      <p>
+        Algumas informações podem ser dados pessoais sensíveis pela LGPD, por
+        exemplo ao se candidatar a uma vaga afirmativa para pessoas com
+        deficiência, ou ao contar algo pessoal no chat. Esses dados são
+        tratados só para a finalidade escolhida por você (a candidatura ou a
+        resposta da BIA), com base no seu consentimento, que você dá ao
+        enviá-los e pode revogar a qualquer momento.
+      </p>
 
       <h2 style={h2Style}>3. Para que usamos os seus dados</h2>
       <ul>
@@ -161,10 +175,19 @@ export default function Privacidade() {
           <strong>Empresas e recrutadoras:</strong> quando você se candidata a
           uma vaga ou deixa o seu currículo visível, as informações
           necessárias ficam disponíveis para a empresa responsável pela vaga.
+          Depois que recebe a sua candidatura, a empresa passa a ser
+          responsável, como controladora, pelo uso desses dados no processo
+          seletivo.
         </li>
         <li>
           <strong>Negócios da vitrine:</strong> quando você solicita um
           agendamento.
+        </li>
+        <li>
+          <strong>Lojas parceiras dos cupons:</strong> ao clicar em um link de
+          cupom ou de afiliado, você vai para o site da loja, que pode
+          registrar a sua visita e a compra (por exemplo, com cookies),
+          conforme a política de privacidade dela.
         </li>
         <li>
           <strong>Operadores</strong>, que tratam dados em nosso nome, sob
@@ -291,6 +314,13 @@ export default function Privacidade() {
         Podemos atualizar esta Política periodicamente. Quando houver mudanças
         relevantes, avisaremos você pela plataforma e indicaremos a nova
         versão e a data no topo desta página.
+      </p>
+
+      <h2 style={h2Style}>14. Menores de idade</h2>
+      <p>
+        O Bia não é destinado a menores de 18 anos e não coleta dados de
+        menores de forma intencional. Se identificarmos uma conta de menor, ela
+        será excluída.
       </p>
     </main>
   );

@@ -54,7 +54,7 @@ export default function Cadastro() {
           <input className="rp-input" type="password" autoComplete="new-password" />
         </Field>
         <p className="rp-muted">
-          Ao criar a conta, você concorda com os <Link href="/termo">Termos de Uso</Link> e a{" "}
+          Ao criar a conta, você declara ter 18 anos ou mais e concorda com os <Link href="/termo">Termos de Uso</Link> e a{" "}
           <Link href="/privacidade">Política de Privacidade</Link>.
         </p>
         <button className="rp-btn block" disabled={busy}>
