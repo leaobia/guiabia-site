@@ -28,9 +28,6 @@ type Values = {
   salaryRange: string;
   requirements: string;
   benefits: string;
-  contactEmail: string;
-  whatsapp: string;
-  applyUrl: string;
   status: JobStatus;
 };
 
@@ -47,10 +44,11 @@ const STEPS: { title: string; rules: Partial<Record<keyof Values, Rules>> }[] = 
     },
   },
   { title: "Detalhes", rules: {} },
-  { title: "Contato", rules: { contactEmail: { email: true }, applyUrl: { url: true } } },
 ];
 
-const DETAIL_FIELDS = ["location", "salaryRange", "requirements", "benefits", "affirmativeTags"];
+// A candidatura é só pelo app: contactEmail, whatsapp e applyUrl continuam no back, mas o portal não
+// mostra nem envia esses campos (na edição, ficam como estão).
+const DETAIL_FIELDS = ["location", "salaryRange", "requirements", "benefits", "affirmativeTags", "status"];
 /** Etapa onde fica o campo (para abrir a etapa certa quando a API recusa um campo). */
 const stepOf = (field: string) =>
   DETAIL_FIELDS.includes(field) ? 1 : Math.max(0, STEPS.findIndex((s) => field in s.rules));
@@ -71,9 +69,6 @@ export default function JobForm({ initial, defaultCompany, submitLabel, onSubmit
     salaryRange: initial?.salaryRange ?? "",
     requirements: initial?.requirements ?? "",
     benefits: initial?.benefits ?? "",
-    contactEmail: initial?.contactEmail ?? "",
-    whatsapp: initial?.whatsapp ?? "",
-    applyUrl: initial?.applyUrl ?? "",
     status: initial?.status ?? "active",
   });
 
@@ -122,7 +117,7 @@ export default function JobForm({ initial, defaultCompany, submitLabel, onSubmit
       affirmativeTags: tags.length ? tags : ["geral"],
     };
     // Na edição, "" apaga o campo; na criação, campo vazio nem vai
-    for (const k of ["requirements", "benefits", "salaryRange", "location", "whatsapp", "contactEmail", "applyUrl"] as const) {
+    for (const k of ["requirements", "benefits", "salaryRange", "location"] as const) {
       if (t(v[k]) || editing) data[k] = t(v[k]);
     }
     if (editing && initial?.status !== "archived") data.status = v.status;
@@ -239,26 +234,6 @@ export default function JobForm({ initial, defaultCompany, submitLabel, onSubmit
                 ))}
               </div>
             </fieldset>
-          </section>
-        )}
-
-        {step === 2 && (
-          <section className="rp-card rp-form-grid">
-            <div className="rp-stack" style={{ gap: 4 }}>
-              <h2>Contato</h2>
-              <p className="rp-muted">Opcional. As candidatas também podem se candidatar pelo app, com o currículo.</p>
-            </div>
-            <div className="rp-form-grid two">
-              <Field label="E-mail de contato" name="contactEmail" error={fields.errors.contactEmail}>
-                <input className="rp-input" type="email" value={v.contactEmail} onChange={set("contactEmail")} />
-              </Field>
-              <Field label="WhatsApp" name="whatsapp" error={fields.errors.whatsapp}>
-                <input className="rp-input" type="tel" inputMode="tel" value={v.whatsapp} onChange={set("whatsapp")} />
-              </Field>
-            </div>
-            <Field label="Link para se candidatar" name="applyUrl" hint="Começando com https://" error={fields.errors.applyUrl}>
-              <input className="rp-input" type="url" placeholder="https://" value={v.applyUrl} onChange={set("applyUrl")} />
-            </Field>
             {editing && initial?.status !== "archived" && (
               <fieldset className="rp-fieldset">
                 <legend>Situação da vaga</legend>

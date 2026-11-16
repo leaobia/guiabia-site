@@ -75,7 +75,7 @@ export default function EditarVaga() {
               <h2>Arquivar vaga</h2>
               <p className="rp-muted">
                 A vaga deixa de aparecer no app e na sua lista. Para só parar de receber candidaturas,
-                marque a vaga como encerrada na etapa Contato.
+                marque a vaga como encerrada na etapa Detalhes.
               </p>
               <div>
                 <button type="button" className="rp-btn danger" onClick={archive} disabled={archiving}>
