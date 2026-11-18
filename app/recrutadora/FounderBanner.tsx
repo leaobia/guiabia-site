@@ -76,7 +76,7 @@ export default function FounderBanner({ compact = false }: { compact?: boolean }
           <span aria-hidden="true">💜</span> Seja uma Recrutadora Fundadora da Bia
         </h2>
         <p>
-          Cadastre-se até 31/01/2027 e ganhe <strong>12 meses grátis do plano BIA Pro</strong>. A cortesia é
+          Cadastre-se até 31/01/2027 e ganhe <strong>12 meses grátis para publicar vagas</strong>. A cortesia é
           liberada em até 48h após o cadastro. Sem cartão, sem compromisso.
         </p>
       </aside>

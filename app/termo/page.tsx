@@ -174,8 +174,8 @@ export default function Termos() {
         renovação seguinte ao aviso, e você pode cancelar antes dela sem custo.
       </p>
       <p>
-        3.9. Recrutadoras que se cadastrarem até 31/01/2027 recebem 12 meses de
-        Bia Pro gratuito (Recrutadora Fundadora), liberados em até 48h após o
+        3.9. Recrutadoras que se cadastrarem até 31/01/2027 recebem 12 meses
+        grátis para publicar vagas (Recrutadora Fundadora), liberados em até 48h após o
         cadastro.
       </p>
 
