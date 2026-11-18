@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { cloneElement, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
 import Avatar from "@/components/Avatar";
 import { ApiError, NO_ACCESS_MESSAGE, type RecruiterProfile } from "@/lib/recrutadora/api";
+import { FOUNDER_FREE, useFounderActive } from "./FounderBanner";
 import Icon from "./icons";
 import { ACTIVATE, BILLING, HOME, usePortal } from "./PortalProvider";
 
@@ -20,6 +21,7 @@ export const Brand = ({ href = "/recrutadora" }: { href?: string }) => (
 
 /** Moldura das telas de entrada: painel roxo com a BIA (no computador) e o formulário. */
 export function AuthCard({ title, intro, children }: { title: string; intro?: ReactNode; children: ReactNode }) {
+  const founder = useFounderActive();
   return (
     <div className="rp-auth">
       <aside className="rp-auth-side">
@@ -28,7 +30,8 @@ export function AuthCard({ title, intro, children }: { title: string; intro?: Re
         <p>Publique suas vagas no app Guia BIA e acompanhe cada candidata em um só lugar.</p>
         <ul>
           <li>
-            <span className="ico"><Icon name="sparkle" size={18} /></span>30 dias grátis para começar
+            <span className="ico"><Icon name="sparkle" size={18} /></span>
+            {founder ? FOUNDER_FREE : "30 dias grátis para começar"}
           </li>
           <li>
             <span className="ico"><Icon name="heart" size={18} /></span>Vagas afirmativas: mães, 50+, PCD e mais

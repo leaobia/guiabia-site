@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Avatar from "@/components/Avatar";
 import Footer from "@/components/Footer";
-import FounderBanner from "./FounderBanner";
+import FounderBanner, { FOUNDER_FREE, FounderStrip, useFounderActive } from "./FounderBanner";
 import Icon, { type IconName } from "./icons";
 import { LOGIN, nextStep, usePortal } from "./PortalProvider";
 import { Brand } from "./ui";
@@ -36,9 +36,18 @@ export default function Apresentacao() {
   const loggedIn = status === "ready";
   const cta = loggedIn ? nextStep(user, profile) : SIGNUP;
   const ctaLabel = loggedIn ? "Ir para o portal" : "Começar";
+  const founder = useFounderActive();
+  const benefits = founder
+    ? BENEFITS.map((b) =>
+        b.title === "Grátis no início"
+          ? { ...b, title: "12 meses grátis", text: "Recrutadoras Fundadoras que se cadastram até 31/01/2027 ganham 12 meses do BIA Pro, sem cartão." }
+          : b
+      )
+    : BENEFITS;
 
   return (
     <>
+      <FounderStrip href={cta} />
       <header className="rp-top">
         <div className="wrap">
           <Brand />
@@ -108,7 +117,7 @@ export default function Apresentacao() {
           <div className="wrap rp-stack lg">
             <h2>Por que publicar no Guia BIA?</h2>
             <div className="rp-grid three">
-              {BENEFITS.map((b) => (
+              {benefits.map((b) => (
                 <article key={b.title} className={`rp-card rp-benefit ${b.tone}`}>
                   <span className="ico"><Icon name={b.icon} size={26} /></span>
                   <h3>{b.title}</h3>
@@ -144,7 +153,11 @@ export default function Apresentacao() {
             <div className="rp-cta-band">
               <Avatar size={96} state="thinking" dot={false} />
               <h2>Sua próxima contratação pode estar no Guia BIA.</h2>
-              <p>Ative o perfil de recrutadora e ganhe 30 dias grátis para publicar vagas.</p>
+              <p>
+                {founder
+                  ? `${FOUNDER_FREE}: cadastre-se até 31/01/2027 e publique vagas sem pagar nada.`
+                  : "Ative o perfil de recrutadora e ganhe 30 dias grátis para publicar vagas."}
+              </p>
               <Link className="rp-btn coral" href={cta}>
                 {ctaLabel} <Icon name="arrowRight" size={18} />
               </Link>

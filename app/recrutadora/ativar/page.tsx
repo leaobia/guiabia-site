@@ -5,6 +5,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Avatar from "@/components/Avatar";
 import { api, loadCompanyName } from "@/lib/recrutadora/api";
+import { useFounderActive } from "../FounderBanner";
 import Icon from "../icons";
 import { HOME, usePortal } from "../PortalProvider";
 import { ErrorMessage, Field, Loading, PortalShell, RequiredNote, Success, useFieldErrors } from "../ui";
@@ -12,6 +13,7 @@ import { ErrorMessage, Field, Loading, PortalShell, RequiredNote, Success, useFi
 // Ativa o perfil de recrutadora (inicia os 30 dias grátis) ou, se já ativo, troca o nome da empresa.
 export default function Ativar() {
   const { ready, profile, reload } = usePortal("user");
+  const founder = useFounderActive();
   const router = useRouter();
   const fields = useFieldErrors();
   const [companyName, setCompanyName] = useState<string | null>(null);
@@ -75,7 +77,16 @@ export default function Ativar() {
           <p className="rp-notice">
             <Icon name="sparkle" size={22} />
             <span>
-              Ao ativar, você ganha <strong>30 dias grátis</strong> para publicar vagas e receber candidaturas.
+              {founder ? (
+                <>
+                  Como Recrutadora Fundadora, você ganha <strong>12 meses grátis do BIA Pro</strong>, liberados em até
+                  48h. Ao ativar, você já pode publicar vagas e receber candidaturas.
+                </>
+              ) : (
+                <>
+                  Ao ativar, você ganha <strong>30 dias grátis</strong> para publicar vagas e receber candidaturas.
+                </>
+              )}
             </span>
           </p>
         )}

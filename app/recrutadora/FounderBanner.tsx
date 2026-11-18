@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Icon from "./icons";
 
@@ -11,7 +12,7 @@ const VIDEO_ID = "rGQ478SoQOg";
  * Só decide no navegador, depois de montar: o HTML gerado no build não traz o banner,
  * então ele não fica no ar por cache depois do prazo e não há diferença de hidratação.
  */
-function useFounderActive() {
+export function useFounderActive() {
   const [active, setActive] = useState(false);
   useEffect(() => setActive(Date.now() < FOUNDER_ENDS_AT), []);
   return active;
@@ -49,6 +50,20 @@ function TutorialVideo({ compact }: { compact?: boolean }) {
     </button>
   );
 }
+
+/** Faixa no topo da página inicial, acima do cabeçalho. */
+export function FounderStrip({ href }: { href: string }) {
+  if (!useFounderActive()) return null;
+  return (
+    <Link className="rp-founder-strip" href={href}>
+      <span aria-hidden="true">💜</span> <strong>Recrutadora Fundadora:</strong> 12 meses grátis até 31/01
+      <Icon name="arrowRight" size={16} />
+    </Link>
+  );
+}
+
+/** Texto dos "dias grátis": durante a campanha, só a oferta de fundadora (uma mensagem só). */
+export const FOUNDER_FREE = "12 meses grátis para Recrutadoras Fundadoras";
 
 /** Destaque da campanha Recrutadora Fundadora, com o tutorial logo abaixo. */
 export default function FounderBanner({ compact = false }: { compact?: boolean }) {

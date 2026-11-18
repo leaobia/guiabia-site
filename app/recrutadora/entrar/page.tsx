@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import FounderBanner from "../FounderBanner";
 import { usePortal } from "../PortalProvider";
 import { AuthCard, ErrorMessage, Field, formValues, Loading, useFieldErrors } from "../ui";
 
@@ -30,6 +31,7 @@ export default function Entrar() {
 
   return (
     <AuthCard title="Que bom ver você de novo" intro="Entre com a mesma conta do app Guia BIA.">
+      <FounderBanner compact />
       <form className="rp-stack" onSubmit={submit} onInput={fields.clearOnInput} noValidate>
         <ErrorMessage error={error} />
         <Field label="E-mail" name="email" required error={fields.errors.email}>

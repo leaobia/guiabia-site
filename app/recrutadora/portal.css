@@ -268,3 +268,6 @@ textarea.rp-input { resize:vertical; min-height:120px; }
 .rp-video-cover:hover img { opacity:1; }
 .rp-video-play { position:absolute; left:50%; bottom:18px; transform:translateX(-50%); display:inline-flex; align-items:center; gap:8px; background:var(--coral); color:#fff; font:inherit; font-weight:800; padding:12px 22px; border-radius:999px; box-shadow:0 8px 24px rgba(0,0,0,.25); white-space:nowrap; }
 .rp-video-cover:focus-visible { outline:3px solid var(--coral); outline-offset:3px; }
+.rp-founder-strip { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px; padding:9px 16px; background:var(--coral-deep); color:#fff; font-size:.92rem; text-align:center; text-decoration:none; }
+.rp-founder-strip strong { font-weight:800; }
+.rp-founder-strip:hover { background:#9a3a31; color:#fff; }
