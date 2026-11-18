@@ -3,9 +3,10 @@ import Link from "next/link";
 export const metadata = { title: "Termos de uso | Bia" };
  
 const VERSAO = "1.3";
-const ATUALIZADO_EM = "16 de novembro de 2026";
+const ATUALIZADO_EM = "18 de novembro de 2026";
 const DESENVOLVEDORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_SUPORTE = "bia.comunidade.feminina@gmail.com";
+const ENDERECO = "Alameda Rio Negro, 503, Sala 2020 – Alphaville – Barueri/SP – CEP 06454-000";
 const ASSINATURAS_PLAY = "https://play.google.com/store/account/subscriptions";
 
 const h2Style = { marginTop: 32, marginBottom: 8 } as const;
@@ -337,6 +338,9 @@ export default function Termos() {
       <p>
         Em caso de dúvidas sobre estes Termos de Uso, fale com a gente pelo
         e-mail <a href={`mailto:${EMAIL_SUPORTE}`}>{EMAIL_SUPORTE}</a>.
+      </p>
+      <p>
+        Responsável: {DESENVOLVEDORA}. Endereço para contato: {ENDERECO}.
       </p>
     </main>
   );

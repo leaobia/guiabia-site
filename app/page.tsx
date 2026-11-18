@@ -14,7 +14,10 @@ export default function Home() {
       <div className="hero">
         <Petals />
         <div className="wrap">
-          <div className="top"><img src="/logo.svg" alt="" width={38} height={38} />Bia</div>
+          <div className="top">
+            <img src="/logo.svg" alt="" width={38} height={38} />Bia
+            <a className="top-link" href="/recrutadora">Você é recrutadora? <span aria-hidden="true">→</span></a>
+          </div>
           <div className="hero-grid">
             <div>
               <h1>Um passo pequeno de cada vez.</h1>

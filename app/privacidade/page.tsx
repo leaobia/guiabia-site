@@ -3,9 +3,10 @@ import Link from "next/link";
 export const metadata = { title: "Política de privacidade | Bia" };
 
 const VERSAO = "1.4";
-const ATUALIZADO_EM = "16 de novembro de 2026";
+const ATUALIZADO_EM = "18 de novembro de 2026";
 const CONTROLADORA = "BIANCA PEREIRA LEÃO";
 const EMAIL_PRIVACIDADE = "bia.comunidade.feminina@gmail.com";
+const ENDERECO = "Alameda Rio Negro, 503, Sala 2020 – Alphaville – Barueri/SP – CEP 06454-000";
 const NOME_ENCARREGADA = "BIANCA PEREIRA LEÃO";
 
 const h2Style = { marginTop: 32, marginBottom: 8 } as const;
@@ -35,8 +36,9 @@ export default function Privacidade() {
 
       <h2 style={h2Style}>1. Quem é responsável pelos seus dados</h2>
       <p>
-        A controladora dos dados pessoais é {CONTROLADORA}. Para falar sobre
-        privacidade, use o e-mail{" "}
+        A controladora dos dados pessoais é {CONTROLADORA}, com endereço
+        para contato em {ENDERECO}. Para falar sobre privacidade, use o
+        e-mail{" "}
         <a href={`mailto:${EMAIL_PRIVACIDADE}`}>{EMAIL_PRIVACIDADE}</a>.
       </p>
 
@@ -307,7 +309,8 @@ export default function Privacidade() {
       <p>
         A pessoa responsável por receber as suas solicitações e as
         comunicações da ANPD é {NOME_ENCARREGADA}. Contato:{" "}
-        <a href={`mailto:${EMAIL_PRIVACIDADE}`}>{EMAIL_PRIVACIDADE}</a>.
+        <a href={`mailto:${EMAIL_PRIVACIDADE}`}>{EMAIL_PRIVACIDADE}</a> ou
+        correspondência para {ENDERECO}.
       </p>
 
       <h2 style={h2Style}>13. Alterações nesta Política</h2>

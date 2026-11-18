@@ -17,6 +17,8 @@ a:focus-visible, .btn:focus-visible { outline:3px solid #fff; outline-offset:3px
 .hero .petals { position:absolute; left:-140px; bottom:-160px; width:520px; opacity:.09; pointer-events:none; }
 .top { display:flex; align-items:center; gap:10px; padding:22px 0; font-weight:800; font-size:1.4rem; }
 .top img { border-radius:10px; }
+.top .top-link { margin-left:auto; color:var(--glow); font-size:.92rem; font-weight:700; text-decoration:none; padding:8px 14px; border:1px solid rgba(224,200,240,.45); border-radius:999px; white-space:nowrap; }
+.top .top-link:hover { color:#fff; background:rgba(255,255,255,.1); border-color:var(--glow); }
 .hero-grid { display:grid; gap:48px; padding:24px 0 72px; align-items:center; position:relative; }
 h1 { margin:0; font-size:clamp(2.6rem,9vw,5rem); line-height:1.02; letter-spacing:-.035em; font-weight:800; }
 .lead { margin:22px 0 28px; font-size:1.2rem; max-width:44ch; color:var(--glow); }
