@@ -173,6 +173,11 @@ export default function Termos() {
         pelo menos 30 dias de antecedência. O novo valor só vale a partir da
         renovação seguinte ao aviso, e você pode cancelar antes dela sem custo.
       </p>
+      <p>
+        3.9. Recrutadoras que se cadastrarem até 31/01/2027 recebem 12 meses de
+        Bia Pro gratuito (Recrutadora Fundadora), liberados em até 48h após o
+        cadastro.
+      </p>
 
       <h2 id="reembolso" style={h2Style}>
         4. Cancelamento e reembolso
@@ -246,6 +251,10 @@ export default function Termos() {
         5.2. As avaliações de anunciantes podem ser anônimas quando você
         escolher essa opção. Nesse caso, sua identidade fica protegida no
         sistema interno, para fins de segurança e prevenção de fraudes.
+      </p>
+      <p>
+        5.3. Só pode avaliar uma anunciante quem teve um atendimento agendado e
+        aceito por ela pelo aplicativo.
       </p>
 
       <h2 style={h2Style}>5A. Regras para recrutadoras</h2>
