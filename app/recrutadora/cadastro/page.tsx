@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import FounderBanner from "../FounderBanner";
 import { usePortal } from "../PortalProvider";
 import { AuthCard, ErrorMessage, Field, formValues, Loading, RequiredNote, useFieldErrors } from "../ui";
 
@@ -38,6 +39,7 @@ export default function Cadastro() {
       title="Crie sua conta"
       intro="Publique vagas e receba candidaturas de mulheres no Guia BIA. Se você já usa o app, entre com a mesma conta."
     >
+      <FounderBanner compact />
       <form className="rp-stack" onSubmit={submit} onInput={fields.clearOnInput} noValidate>
         <RequiredNote />
         <ErrorMessage error={error} />

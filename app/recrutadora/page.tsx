@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Avatar from "@/components/Avatar";
 import Footer from "@/components/Footer";
+import FounderBanner from "./FounderBanner";
 import Icon, { type IconName } from "./icons";
 import { LOGIN, nextStep, usePortal } from "./PortalProvider";
 import { Brand } from "./ui";
@@ -94,6 +95,12 @@ export default function Apresentacao() {
                 <span className="rp-app-btn">Quero me candidatar</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="rp-founder-section">
+          <div className="wrap">
+            <FounderBanner />
           </div>
         </section>
 
