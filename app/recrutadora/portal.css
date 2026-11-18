@@ -271,3 +271,40 @@ textarea.rp-input { resize:vertical; min-height:120px; }
 .rp-founder-strip { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px; padding:9px 16px; background:var(--coral-deep); color:#fff; font-size:.92rem; text-align:center; text-decoration:none; }
 .rp-founder-strip strong { font-weight:800; }
 .rp-founder-strip:hover { background:#9a3a31; color:#fff; }
+
+/* ===== Carteirinha de Recrutadora Fundadora ===== */
+.rp-cc-entry { display:flex; align-items:center; gap:16px; padding:18px 20px; border-radius:24px; text-decoration:none; color:var(--rp-text);
+  background:linear-gradient(135deg, var(--coral-soft) 0%, #f3e8ff 100%); border:1px solid #f4cfe0; box-shadow:var(--rp-shadow); transition:transform .15s, box-shadow .15s; }
+.rp-cc-entry:hover { transform:translateY(-2px); box-shadow:var(--rp-shadow-lg); }
+.rp-cc-entry .ico { flex:none; width:52px; height:52px; border-radius:16px; display:grid; place-items:center; background:var(--violet); color:#fff; }
+.rp-cc-entry .txt { display:grid; gap:2px; flex:1; min-width:0; }
+.rp-cc-entry .txt strong { color:var(--violet); font-size:1.05rem; line-height:1.3; }
+.rp-cc-entry .txt span { color:var(--rp-muted); font-size:.92rem; font-weight:600; }
+.rp-cc-entry .go { flex:none; display:inline-flex; align-items:center; gap:6px; padding:9px 16px; border-radius:999px; background:var(--coral); color:#fff; font-weight:800; }
+@media (max-width:520px) { .rp-cc-entry { flex-wrap:wrap; } .rp-cc-entry .go { width:100%; justify-content:center; } }
+
+.rp-cc { display:grid; gap:24px; align-items:start; }
+@media (min-width:860px) { .rp-cc { grid-template-columns:minmax(0,440px) minmax(0,1fr); gap:32px; } }
+.rp-cc-preview { display:grid; gap:10px; justify-items:center; }
+@media (min-width:860px) { .rp-cc-preview { position:sticky; top:92px; } }
+.rp-cc-preview canvas { width:100%; max-width:440px; height:auto; aspect-ratio:4/5; border-radius:22px; box-shadow:var(--rp-shadow-lg); background:var(--deep); display:block; }
+.rp-cc-preview canvas.has-photo { cursor:grab; touch-action:none; }
+.rp-cc-preview canvas.has-photo:active { cursor:grabbing; }
+.rp-cc-hint { font-size:.88rem; text-align:center; }
+.rp-cc-num { display:inline-grid; place-items:center; width:30px; height:30px; margin-right:6px; border-radius:50%; background:var(--violet); color:#fff; font-size:.95rem; vertical-align:2px; }
+.rp-cc-consent { display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border-radius:16px; background:var(--mist); font-weight:600; cursor:pointer; line-height:1.45; }
+.rp-cc-consent input { flex:none; width:22px; height:22px; margin:1px 0 0; accent-color:var(--violet); cursor:pointer; }
+.rp-cc-privacy { display:flex; gap:10px; align-items:flex-start; color:var(--rp-muted); font-size:.9rem; line-height:1.5; }
+.rp-cc-privacy svg { flex:none; margin-top:2px; color:var(--ok-deep); }
+.rp-cc input[type="range"] { width:100%; accent-color:var(--violet); }
+.rp-cc-off { opacity:.55; }
+.rp-btn.rp-cc-insta { min-height:56px; font-size:1.05rem; background:linear-gradient(90deg, #e8746a 0%, #c13584 55%, #6b2fb5 100%); border:0; }
+.rp-btn.rp-cc-insta:hover { background:linear-gradient(90deg, #d95d52 0%, #a92b72 55%, #4b1d80 100%); }
+.rp-btn.rp-cc-insta:disabled, .rp-cc .rp-btn:disabled { cursor:not-allowed; }
+.rp-cc-tag { display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:16px; background:var(--coral-soft); color:#7a2d26; font-weight:700; }
+.rp-cc-tag svg { flex:none; color:#c13584; }
+.rp-cc-tag a { color:#a92b72; }
+.rp-cc-invite h2 { font-size:1.45rem; color:var(--violet); }
+.rp-cc-invite .rp-founder-tag { justify-self:center; }
+.rp-modal:has(.rp-cc-invite) { max-width:min(500px, calc(100vw - 32px)); }
+@media (max-width:639px) { .rp-nav { gap:0; } .rp-nav a, .rp-nav button { padding:9px 8px; } .rp-top .wrap { gap:6px; } }

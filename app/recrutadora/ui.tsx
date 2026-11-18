@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import { cloneElement, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
 import Avatar from "@/components/Avatar";
 import { ApiError, NO_ACCESS_MESSAGE, type RecruiterProfile } from "@/lib/recrutadora/api";
-import { FOUNDER_FREE, useFounderActive } from "./FounderBanner";
+import { FOUNDER_FREE, isFounderAccount, useFounderActive } from "./FounderBanner";
 import Icon from "./icons";
 import { ACTIVATE, BILLING, HOME, usePortal } from "./PortalProvider";
+
+const CARD = "/recrutadora/carteirinha";
 
 export const Brand = ({ href = "/recrutadora" }: { href?: string }) => (
   <Link href={href} className="rp-brand">
@@ -55,7 +57,7 @@ export function AuthCard({ title, intro, children }: { title: string; intro?: Re
 
 /** Moldura das telas logadas: barra branca com a navegação e o botão de sair. */
 export function PortalShell({ children }: { children: ReactNode }) {
-  const { profile, logout } = usePortal("user");
+  const { user, profile, logout } = usePortal("user");
   const pathname = usePathname();
   const current = (href: string) => (pathname === href ? "page" : undefined);
   return (
@@ -75,6 +77,11 @@ export function PortalShell({ children }: { children: ReactNode }) {
                 <Link href={BILLING} aria-current={current(BILLING)}>
                   <Icon name="sparkle" /> <span className="label">Assinatura</span>
                 </Link>
+                {isFounderAccount(user) && (
+                  <Link href={CARD} aria-current={current(CARD)} title="Minha carteirinha de Recrutadora Fundadora">
+                    <Icon name="badge" /> <span className="label">Carteirinha</span>
+                  </Link>
+                )}
               </>
             )}
             <button type="button" onClick={logout}>

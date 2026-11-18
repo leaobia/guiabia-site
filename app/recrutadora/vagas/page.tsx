@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Avatar from "@/components/Avatar";
 import { api, formatDate, JOB_STATUS_LABEL, WORK_MODEL_LABEL, type Job, type WorkModel } from "@/lib/recrutadora/api";
 import Icon, { type IconName } from "../icons";
+import { FounderCardEntry, FounderCardInvite } from "../carteirinha/Invite";
 import { usePortal, VERIFY } from "../PortalProvider";
 import { AccessBlock, canPublish, ErrorMessage, Loading, PortalShell } from "../ui";
 
@@ -71,6 +72,8 @@ export default function Vagas() {
           )}
         </section>
 
+        <FounderCardInvite user={user} />
+        <FounderCardEntry user={user} />
         <AccessBlock profile={profile} />
         {user && !user.emailVerified && (
           <p className="rp-notice">

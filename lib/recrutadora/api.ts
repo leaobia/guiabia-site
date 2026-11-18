@@ -16,6 +16,8 @@ export type User = {
   emailVerified: boolean;
   isRecruiter: boolean;
   companyName: string | null;
+  /** Data de criação da conta (ISO). Define quem é Recrutadora Fundadora. */
+  createdAt?: string | null;
 };
 
 export type RecruiterProfile = {

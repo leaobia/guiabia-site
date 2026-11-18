@@ -8,6 +8,23 @@ import Icon from "./icons";
 const FOUNDER_ENDS_AT = Date.parse("2027-02-01T00:00:00-03:00");
 const VIDEO_ID = "rGQ478SoQOg";
 
+/** Lê a data do back com ou sem fuso ("2026-11-18T13:00:00.000Z" ou "2026-11-18 13:00:00", que é UTC). */
+export function parseApiDate(value?: string | null): number {
+  if (!value) return NaN;
+  let v = value.trim().replace(" ", "T");
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?$/.test(v)) v += "Z";
+  return Date.parse(v);
+}
+
+/**
+ * Recrutadora Fundadora: conta criada até 31/01/2027, 23h59 (Brasília), inclusive.
+ * Vale pela data de criação da conta, então continua valendo depois do fim da campanha.
+ */
+export function isFounderAccount(user: { createdAt?: string | null } | null | undefined): boolean {
+  const created = parseApiDate(user?.createdAt);
+  return Number.isFinite(created) && created < FOUNDER_ENDS_AT;
+}
+
 /**
  * Só decide no navegador, depois de montar: o HTML gerado no build não traz o banner,
  * então ele não fica no ar por cache depois do prazo e não há diferença de hidratação.
