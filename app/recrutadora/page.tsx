@@ -40,7 +40,7 @@ export default function Apresentacao() {
   const benefits = founder
     ? BENEFITS.map((b) =>
         b.title === "Grátis no início"
-          ? { ...b, title: "12 meses grátis", text: "Recrutadoras Fundadoras que se cadastram até 31/01/2027 ganham 12 meses do BIA Pro, sem cartão." }
+          ? { ...b, title: "12 meses grátis", text: "Recrutadoras Fundadoras que se cadastram até 31/01/2027 ganham 12 meses grátis para publicar vagas, sem cartão." }
           : b
       )
     : BENEFITS;

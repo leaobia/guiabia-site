@@ -79,7 +79,7 @@ export default function Ativar() {
             <span>
               {founder ? (
                 <>
-                  Como Recrutadora Fundadora, você ganha <strong>12 meses grátis do BIA Pro</strong>, liberados em até
+                  Como Recrutadora Fundadora, você ganha <strong>12 meses grátis para publicar vagas</strong>, liberados em até
                   48h. Ao ativar, você já pode publicar vagas e receber candidaturas.
                 </>
               ) : (
