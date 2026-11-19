@@ -94,7 +94,7 @@ export default function FounderBanner({ compact = false }: { compact?: boolean }
         </h2>
         <p>
           Cadastre-se até 31/01/2027 e ganhe <strong>12 meses grátis para publicar vagas</strong>. A cortesia é
-          liberada em até 48h após o cadastro. Sem cartão, sem compromisso.
+          liberada na hora do cadastro. Sem cartão, sem compromisso.
         </p>
       </aside>
       <TutorialVideo compact={compact} />
