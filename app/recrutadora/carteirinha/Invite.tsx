@@ -90,7 +90,7 @@ export function FounderCardEntry({ user }: { user: User | null }) {
       </span>
       <span className="txt">
         <strong>Minha carteirinha de Recrutadora Fundadora</strong>
-        <span>Gere sua arte com foto e compartilhe no Instagram.</span>
+        <span>Gere sua arte com foto e compartilhe nas redes.</span>
       </span>
       <span className="go">
         Gerar <Icon name="arrowRight" size={18} />

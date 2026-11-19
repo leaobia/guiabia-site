@@ -142,7 +142,7 @@ export default function Carteirinha() {
 
   const copyCaption = () => {
     navigator.clipboard?.writeText(CAPTION).then(
-      () => setNotice(`Legenda copiada! Cole no Instagram e marque @${INSTAGRAM}.`),
+      () => setNotice(`Legenda copiada! Cole na sua publicação e marque @${INSTAGRAM}.`),
       () => setNotice(null)
     );
   };
@@ -163,13 +163,13 @@ export default function Carteirinha() {
 
   const share = () => {
     if (!file) return;
-    // A legenda vai para a área de transferência: o Instagram não recebe texto junto com a imagem
+    // A legenda vai para a área de transferência: algumas redes não recebem texto junto com a imagem
     navigator.clipboard?.writeText(CAPTION).catch(() => {});
     if (canShareFile) {
       navigator.share({ files: [file], text: CAPTION }).then(
         () => setNotice(`Legenda copiada! Ao postar, cole a legenda e marque @${INSTAGRAM}. 💜`),
         (err: Error) => {
-          if (err.name !== "AbortError") setError("Não deu para abrir o compartilhamento. Baixe a imagem e poste pelo Instagram.");
+          if (err.name !== "AbortError") setError("Não deu para abrir o compartilhamento. Baixe a imagem e publique nas suas redes.");
         }
       );
       return;
@@ -177,7 +177,7 @@ export default function Carteirinha() {
     // Computador (ou navegador sem compartilhamento de arquivo): baixa e explica o caminho
     download();
     setNotice(
-      `Imagem baixada e legenda copiada! Envie a imagem para o celular e poste no Instagram (feed ou stories), ou publique em instagram.com. Não esqueça de marcar @${INSTAGRAM}.`
+      `Imagem baixada e legenda copiada! Publique a imagem nas suas redes, pelo celular ou pelo computador. Não esqueça de marcar @${INSTAGRAM}.`
     );
   };
 
@@ -287,7 +287,7 @@ export default function Carteirinha() {
                 <span className="rp-cc-num">2</span> Compartilhe
               </h2>
               <button type="button" className="rp-btn coral block rp-cc-insta" disabled={!file} onClick={share}>
-                <Icon name="instagram" size={20} /> Compartilhar no Instagram
+                <Icon name="share" size={20} /> Compartilhe nas redes
               </button>
               <div className="rp-row" style={{ gap: 10 }}>
                 <button type="button" className="rp-btn secondary small" style={{ flex: "1 1 220px" }} disabled={!file} onClick={download}>
@@ -303,7 +303,7 @@ export default function Carteirinha() {
                 </p>
               )}
               <div className="rp-cc-tag">
-                <Icon name="instagram" size={22} />
+                <Icon name="heart" size={22} />
                 <span>
                   Ao postar, marque{" "}
                   <a href={`https://www.instagram.com/${INSTAGRAM}/`} target="_blank" rel="noopener noreferrer">
@@ -313,7 +313,7 @@ export default function Carteirinha() {
                 </span>
               </div>
               <p className="rp-muted" style={{ fontSize: ".88rem" }}>
-                No celular, o botão abre o compartilhamento: escolha Instagram (feed ou stories) e cole a legenda, que já
+                No celular, o botão abre o compartilhamento: escolha a rede (feed ou stories) e cole a legenda, que já
                 fica copiada. A imagem tem 1080×1350, no tamanho certo para o feed.
               </p>
             </section>
