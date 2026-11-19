@@ -309,3 +309,10 @@ textarea.rp-input { resize:vertical; min-height:120px; }
 .rp-modal:has(.rp-cc-invite) { max-width:min(500px, calc(100vw - 32px)); }
 @media (max-width:639px) { .rp-nav { gap:0; } .rp-nav a, .rp-nav button { padding:9px 8px; } .rp-top .wrap { gap:6px; } }
 .rp-stat.small strong { font-size:1.35rem; line-height:1.15; }
+.rp-group-entry { background:linear-gradient(135deg, #e3f6ee 0%, #f3e8ff 100%); border-color:#bfe8d6; }
+.rp-group-entry .ico { background:#128c4a; }
+.rp-group-entry .go { background:#128c4a; }
+.rp-group-entry:hover .go { background:#0b6e39; }
+.rp-cc-invite-group { display:inline-flex; align-items:center; gap:8px; margin-top:4px; padding:10px 14px; border-radius:14px; background:#e3f6ee; color:#0b6e39; font-size:.92rem; text-decoration:none; line-height:1.35; text-align:left; }
+.rp-cc-invite-group:hover { background:#d2efe2; text-decoration:underline; }
+.rp-cc-invite-group svg { flex:none; }

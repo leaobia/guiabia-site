@@ -9,6 +9,8 @@ import { isFounderAccount } from "../FounderBanner";
 import Icon from "../icons";
 
 export const CARD_PAGE = "/recrutadora/carteirinha";
+/** Grupo do WhatsApp das Recrutadoras Fundadoras. */
+export const FOUNDER_GROUP_URL = "https://chat.whatsapp.com/GqeMio59P8iAQZYX2raUiI";
 const seenKey = (userId: string) => `bia.carteirinha.convite.${userId}`;
 
 function seen(userId: string) {
@@ -75,8 +77,30 @@ export function FounderCardInvite({ user }: { user: User | null }) {
             <Icon name="badge" size={18} /> Gerar minha carteirinha
           </button>
         </div>
+        <a className="rp-cc-invite-group" href={FOUNDER_GROUP_URL} target="_blank" rel="noopener noreferrer">
+          <Icon name="chat" size={18} /> Participe também do grupo das Recrutadoras Fundadoras no WhatsApp
+        </a>
       </div>
     </dialog>
+  );
+}
+
+/** Convite fixo no painel para o grupo das fundadoras (todas com conta criada até 31/01/2027). */
+export function FounderGroupEntry({ user }: { user: User | null }) {
+  if (!isFounderAccount(user)) return null;
+  return (
+    <a href={FOUNDER_GROUP_URL} target="_blank" rel="noopener noreferrer" className="rp-cc-entry rp-group-entry">
+      <span className="ico">
+        <Icon name="chat" size={26} />
+      </span>
+      <span className="txt">
+        <strong>Grupo das Recrutadoras Fundadoras</strong>
+        <span>Entre no nosso grupo do WhatsApp e conecte-se com as outras fundadoras.</span>
+      </span>
+      <span className="go">
+        Entrar no grupo <Icon name="arrowRight" size={18} />
+      </span>
+    </a>
   );
 }
 
