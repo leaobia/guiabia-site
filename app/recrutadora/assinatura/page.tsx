@@ -6,6 +6,7 @@ import Avatar from "@/components/Avatar";
 import {
   api,
   ApiError,
+  courtesyUntil,
   formatCents,
   formatDate,
   type BillingStatus,
@@ -169,7 +170,9 @@ export default function Assinatura() {
           <Avatar size={76} state="greeting" dot={false} />
           <div className="rp-stack" style={{ gap: 6 }}>
             <h1>Assinatura BIA Pro</h1>
-            <p className="rp-muted">Continue publicando vagas e recebendo candidatas depois do teste grátis.</p>
+            <p className="rp-muted">
+              Continue publicando vagas e recebendo candidatas depois {profile?.complimentary ? "da cortesia" : "do teste grátis"}.
+            </p>
           </div>
         </div>
 
@@ -230,7 +233,18 @@ export default function Assinatura() {
                   </div>
                 </div>
               )}
-              {!reactivating && profile?.trialActive && (
+              {!reactivating && profile?.complimentary && (
+                <p className="rp-notice">
+                  <Icon name="calendar" size={22} />
+                  <span>
+                    {profile.complimentaryExpiresAt
+                      ? `Sua cortesia está liberada ${courtesyUntil(profile)}: até lá você publica vagas sem pagar nada.`
+                      : "Sua cortesia não tem data de fim: você publica vagas sem pagar nada."}{" "}
+                    Se assinar agora, a cobrança começa hoje.
+                  </span>
+                </p>
+              )}
+              {!reactivating && !profile?.complimentary && profile?.trialActive && (
                 <p className="rp-notice">
                   <Icon name="clock" size={22} />
                   <span>

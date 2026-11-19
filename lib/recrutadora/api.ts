@@ -26,6 +26,10 @@ export type RecruiterProfile = {
   hasAccess: boolean;
   trialActive: boolean;
   trialDaysRemaining: number;
+  /** Cortesia de vagas (ex.: Recrutadora Fundadora). Tem prioridade sobre o teste grátis. */
+  complimentary?: boolean;
+  /** Fim da cortesia (null = vitalícia). */
+  complimentaryExpiresAt?: string | null;
   verificationStatus: "none" | "pending" | "approved" | "rejected" | string;
 };
 
@@ -349,6 +353,19 @@ export const APPLICATION_STATUS_LABEL: Record<ApplicationStatus, string> = {
 
 export const formatCents = (cents: number) =>
   (cents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+/** Data no horário de Brasília (a cortesia acaba às 23h59 de Brasília, que em UTC já é o dia seguinte). */
+export const formatDateBr = (iso: string) => {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? "" : d.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+};
+
+/** "até 18/11/2027" ou "sem data de fim" para a cortesia; null se a conta não tem cortesia. */
+export const courtesyUntil = (profile: RecruiterProfile | null) => {
+  if (!profile?.complimentary) return null;
+  const end = profile.complimentaryExpiresAt ? formatDateBr(profile.complimentaryExpiresAt) : "";
+  return end ? `até ${end}` : "sem data de fim";
+};
 
 export const formatDate = (iso: string) => {
   const d = new Date(iso);

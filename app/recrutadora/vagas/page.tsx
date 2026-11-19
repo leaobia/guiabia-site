@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Avatar from "@/components/Avatar";
-import { api, formatDate, JOB_STATUS_LABEL, WORK_MODEL_LABEL, type Job, type WorkModel } from "@/lib/recrutadora/api";
+import { api, courtesyUntil, formatDate, JOB_STATUS_LABEL, WORK_MODEL_LABEL, type Job, type WorkModel } from "@/lib/recrutadora/api";
 import Icon, { type IconName } from "../icons";
 import { FounderCardEntry, FounderCardInvite } from "../carteirinha/Invite";
 import { usePortal, VERIFY } from "../PortalProvider";
@@ -55,6 +55,8 @@ export default function Vagas() {
   const views = jobs?.reduce((s, j) => s + j.viewsCount, 0) ?? 0;
   const newApps = newByJob ? Object.values(newByJob).reduce((s, n) => s + n, 0) : null;
   const trial = profile?.trialActive ? String(profile.trialDaysRemaining) : "—";
+  // Cortesia (ex.: Recrutadora Fundadora) vale mais que o teste: mostra a data de fim no lugar do contador
+  const courtesy = courtesyUntil(profile);
 
   return (
     <PortalShell>
@@ -90,12 +92,16 @@ export default function Vagas() {
             <Stat icon="briefcase" value={jobs ? active : "…"} label="vagas ativas" />
             <Stat icon="sparkle" tone="coral" value={newApps ?? "…"} label="candidaturas novas" />
             <Stat icon="eye" tone="ok" value={jobs ? views : "…"} label="visualizações" />
-            <Stat
-              icon="clock"
-              tone="gold"
-              value={trial}
-              label={profile?.trialActive ? (profile.trialDaysRemaining === 1 ? "dia de teste" : "dias de teste") : "teste grátis encerrado"}
-            />
+            {courtesy ? (
+              <Stat icon="calendar" tone="ok small" value={courtesy} label="cortesia liberada" />
+            ) : (
+              <Stat
+                icon="clock"
+                tone="gold"
+                value={trial}
+                label={profile?.trialActive ? (profile.trialDaysRemaining === 1 ? "dia de teste" : "dias de teste") : "teste grátis encerrado"}
+              />
+            )}
           </div>
         )}
 
